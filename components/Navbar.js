@@ -13,6 +13,7 @@ function Navbar(props) {
               alt="Jouri de Ligt logo"
               width={59}
               height={39}
+              priority={true}
             />
           </a>
         </Link>

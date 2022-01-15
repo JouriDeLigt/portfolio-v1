@@ -6,12 +6,13 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import FeaturedProjects from "../components/FeaturedProjects";
+import AllProjects from "../components/AllProjects";
 
 export default function Home() {
   const navItems = [
     ["About", "#about"],
     ["Featured projects", "#featured-projects"],
-    ["View work", "#view-work"],
+    ["All projects", "#all-projects"],
     ["Contact", "#contact"],
   ];
   const socialItems = [
@@ -68,6 +69,7 @@ export default function Home() {
         <Hero socialItems={socialItems} />
         <About skillItems={skillItems} />
         <FeaturedProjects projectItems={projectItems} />
+        <AllProjects />
       </main>
 
       <footer>
