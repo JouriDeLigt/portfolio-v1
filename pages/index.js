@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import About from "../components/About";
 
 export default function Home() {
   const navItems = [
@@ -16,6 +17,15 @@ export default function Home() {
     ["Linkedin", "linkedin.png", "https://www.linkedin.com/in/jouri-de-ligt/"],
     ["Github", "github.png", "https://github.com/JouriDeLigt"],
     ["Instagram", "instagram.png", "https://www.instagram.com/jouri.ligt/"],
+  ];
+  const skillItems = [
+    "React",
+    "Next.js",
+    "Tailwindcss",
+    "Wordpress",
+    "Github",
+    "DevOps",
+    "DigitalOcean",
   ];
   return (
     <div className="page">
@@ -31,6 +41,7 @@ export default function Home() {
       <Navbar navItems={navItems} />
       <main>
         <Hero socialItems={socialItems} />
+        <About skillItems={skillItems} />
       </main>
 
       <footer>

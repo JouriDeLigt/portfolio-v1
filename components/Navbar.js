@@ -4,7 +4,7 @@ import Link from "next/link";
 function Navbar(props) {
   const navItems = props.navItems;
   return (
-    <header className="fixed top-0 left-0 w-full">
+    <header className="fixed z-10 top-0 left-0 w-full">
       <div className="flex justify-between p-8">
         <Link href="/">
           <a>
