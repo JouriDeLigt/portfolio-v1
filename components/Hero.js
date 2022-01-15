@@ -37,7 +37,11 @@ function Hero(props) {
           <div className="flex space-x-4 px-4">
             {socialItems.map(([name, icon, url]) => (
               <Link href={url} key={name}>
-                <a target="_blank" rel={name} className="transform rotate-90">
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  className="transform rotate-90"
+                >
                   <Image
                     src={"/static/images/" + icon}
                     alt={name}
