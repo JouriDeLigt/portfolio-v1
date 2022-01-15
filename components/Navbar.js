@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import logo from "/public/assets/logo-mark-black.png";
 
 function Navbar(props) {
   const navItems = props.navItems;
@@ -9,7 +10,7 @@ function Navbar(props) {
         <Link href="/">
           <a>
             <Image
-              src="/assets/logo-mark-black.png"
+              src={logo}
               alt="Jouri de Ligt logo"
               width={59}
               height={39}
