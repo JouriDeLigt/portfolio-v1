@@ -6,7 +6,7 @@ function SingleFeaturedProject({ slug, name, text, image, skills }) {
     <div className="group w-full flex even:flex-row-reverse gap-4">
       <div className="relative w-1/2">
         <Image
-          src={"/assets/" + image}
+          src={"/static/images/" + image}
           alt="Dummy image"
           layout="fill"
           objectFit="cover"
@@ -40,7 +40,7 @@ function SingleFeaturedProject({ slug, name, text, image, skills }) {
                 View project
                 <div className="relative w-5 h-5 ml-4 group-hover:ml-6 rounded-full border-2 border-solid border-red-500 transition-margin ease-in-out duration-200 flex items-center justify-center">
                   <Image
-                    src="/assets/arrow.svg"
+                    src="/static/images/arrow.svg"
                     alt="Arrow"
                     width={15}
                     height={15}

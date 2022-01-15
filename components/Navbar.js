@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "/public/assets/logo-mark-black.png";
+import logo from "/public/static/images/logo-mark-black.png";
 
 function Navbar(props) {
   const navItems = props.navItems;

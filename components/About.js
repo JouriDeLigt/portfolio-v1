@@ -7,7 +7,7 @@ function About(props) {
       id="about"
     >
       <Image
-        src="/assets/gradient-w.png"
+        src="/static/images/gradient-w.png"
         alt="gradient"
         layout="fill"
         objectFit="contain"
@@ -19,7 +19,7 @@ function About(props) {
         </h2>
         <div className="relative h-96 mt-16">
           <Image
-            src="/assets/dummy-image.jpeg"
+            src="/static/images/dummy-image.jpeg"
             alt="Dummy image"
             layout="fill"
             objectFit="cover"

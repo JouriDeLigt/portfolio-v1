@@ -7,7 +7,7 @@ function AllProjects() {
       id="all-projects"
     >
       <Image
-        src="/assets/gradient-w.png"
+        src="/static/images/gradient-w.png"
         alt="gradient"
         layout="fill"
         objectFit="contain"
@@ -58,7 +58,7 @@ function AllProjects() {
               <Link href="#">
                 <a target="_blank">
                   <Image
-                    src="/assets/github.png"
+                    src="/static/images/github.png"
                     alt="Github repo"
                     width={25}
                     height={25}

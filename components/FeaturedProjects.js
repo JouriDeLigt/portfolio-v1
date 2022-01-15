@@ -9,7 +9,7 @@ function FeaturedProjects(props) {
       id="featured-projects"
     >
       <Image
-        src="/assets/gradient-w.png"
+        src="/static/images/gradient-w.png"
         alt="gradient"
         layout="fill"
         objectFit="contain"

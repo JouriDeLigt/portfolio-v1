@@ -6,7 +6,7 @@ function Hero(props) {
   return (
     <section className="relative z-0 w-full h-screen flex items-center justify-center">
       <Image
-        src="/assets/gradient-w.png"
+        src="/static/images/gradient-w.png"
         alt="gradient"
         layout="fill"
         objectFit="contain"
@@ -39,7 +39,7 @@ function Hero(props) {
               <Link href={url} key={name}>
                 <a target="_blank" rel={name} className="transform rotate-90">
                   <Image
-                    src={"/assets/" + icon}
+                    src={"/static/images/" + icon}
                     alt={name}
                     width={25}
                     height={25}

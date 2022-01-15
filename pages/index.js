@@ -61,7 +61,13 @@ export default function Home() {
           name="description"
           content="Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!"
         />
-        <link rel="icon" href="/assets/favicon.jpg" />
+        <link rel="icon" href="/static/images/favicon.jpg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <Navbar navItems={navItems} />
