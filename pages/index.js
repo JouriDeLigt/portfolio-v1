@@ -5,6 +5,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
+import FeaturedProjects from "../components/FeaturedProjects";
 
 export default function Home() {
   const navItems = [
@@ -27,6 +28,30 @@ export default function Home() {
     "DevOps",
     "DigitalOcean",
   ];
+  const projectItems = [
+    [
+      "name-of-project",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      "dummy-image.jpeg",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+    ],
+    [
+      "name-of-project2",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      "dummy-image.jpeg",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+    ],
+  ];
   return (
     <div className="page">
       <Head>
@@ -42,6 +67,7 @@ export default function Home() {
       <main>
         <Hero socialItems={socialItems} />
         <About skillItems={skillItems} />
+        <FeaturedProjects projectItems={projectItems} />
       </main>
 
       <footer>

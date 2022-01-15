@@ -9,7 +9,8 @@ function Hero(props) {
         src="/assets/gradient-w.png"
         alt="gradient"
         layout="fill"
-        className="absolute inset-0 object-contain"
+        objectFit="contain"
+        className="absolute inset-0 opacity-50"
       />
       <div className="z-10 w-full max-w-5xl flex flex-col">
         <h1 className="text-[60px] font-bold leading-tight">
@@ -24,8 +25,8 @@ function Hero(props) {
           <span className="text-red-500 underline">mollis ex varius</span> vel.
           Maecenas a orci vitae orci sollicitudin rhoncus.
         </p>
-        <Link href="#work">
-          <a className="bg-red-500 text-white px-8 py-4 text-xl w-fit rounded-lg mt-6">
+        <Link href="#featured-projects">
+          <a className="bg-red-500 text-white px-4 py-2 text-lg w-fit rounded-lg mt-6">
             &lt;View work&#47;&gt;
           </a>
         </Link>

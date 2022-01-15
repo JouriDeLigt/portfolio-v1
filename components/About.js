@@ -10,9 +10,10 @@ function About(props) {
         src="/assets/gradient-w.png"
         alt="gradient"
         layout="fill"
-        className="absolute inset-0 object-contain transform -scale-x-100"
+        objectFit="contain"
+        className="absolute inset-0 transform -scale-x-100 opacity-50"
       />
-      <div className="relative w-full max-w-5xl flex flex-col">
+      <div className="relative z-10 w-full max-w-5xl flex flex-col">
         <h2 className="text-4xl font-bold capitalize">
           &lt;About me &#47;&gt;
         </h2>
@@ -36,7 +37,7 @@ function About(props) {
           {skillItems.map((skill) => (
             <p
               key={skill}
-              className="bg-red-500 text-white text-center px-16 py-2 text-xl w-fit rounded-lg flex-grow"
+              className="bg-red-500 text-white text-center px-16 py-2 text-lg w-fit rounded-lg flex-grow"
             >
               {skill}
             </p>
