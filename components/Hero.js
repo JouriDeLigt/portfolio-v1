@@ -43,7 +43,7 @@ function Hero(props) {
                     alt={name}
                     width={25}
                     height={25}
-                    priority={true}
+                    priority
                   />
                 </a>
               </Link>
