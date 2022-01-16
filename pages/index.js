@@ -53,6 +53,80 @@ export default function Home() {
       ],
     ],
   ];
+  const allProjectItems = [
+    [
+      "name-of-project",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+    [
+      "name-of-project2",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+    [
+      "name-of-project3",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+    [
+      "name-of-project4",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+    [
+      "name-of-project5",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+    [
+      "name-of-project6",
+      "Name of project",
+      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
+  ];
   return (
     <div className="page">
       <Head>
@@ -75,7 +149,7 @@ export default function Home() {
         <Hero socialItems={socialItems} />
         <About skillItems={skillItems} />
         <FeaturedProjects projectItems={projectItems} />
-        <AllProjects />
+        <AllProjects allProjectItems={allProjectItems} />
       </main>
 
       <footer>
