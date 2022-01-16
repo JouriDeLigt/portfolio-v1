@@ -146,9 +146,9 @@ export default function Home() {
         />
       </Head>
 
-      <Navbar navItems={navItems} />
+      <Navbar navItems={navItems} socialItems={socialItems} />
       <main>
-        <Hero socialItems={socialItems} />
+        <Hero />
         <About skillItems={skillItems} />
         <FeaturedProjects projectItems={projectItems} />
         <AllProjects allProjectItems={allProjectItems} />
