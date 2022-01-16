@@ -7,6 +7,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import FeaturedProjects from "../components/FeaturedProjects";
 import AllProjects from "../components/AllProjects";
+import Contact from "../components/Contact";
 
 export default function Home() {
   const navItems = [
@@ -150,6 +151,7 @@ export default function Home() {
         <About skillItems={skillItems} />
         <FeaturedProjects projectItems={projectItems} />
         <AllProjects allProjectItems={allProjectItems} />
+        <Contact />
       </main>
 
       <footer>
