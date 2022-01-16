@@ -17,17 +17,31 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
           </Link>
         ))}
       </div>
-      <div className="flex gap-2 mt-2">
-        <Link href={repo}>
-          <a target="_blank">
-            <Image
-              src="/static/images/github.png"
-              alt="Github repo"
-              width={25}
-              height={25}
-            />
-          </a>
-        </Link>
+      <div className="flex gap-4 mt-4">
+        {url && (
+          <Link href={url}>
+            <a target="_blank">
+              <Image
+                src="/static/images/external-url.png"
+                alt="Demo version"
+                width={25}
+                height={25}
+              />
+            </a>
+          </Link>
+        )}
+        {repo && (
+          <Link href={repo}>
+            <a target="_blank">
+              <Image
+                src="/static/images/github.png"
+                alt="Github repo"
+                width={25}
+                height={25}
+              />
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );

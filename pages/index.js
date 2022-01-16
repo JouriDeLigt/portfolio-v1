@@ -8,6 +8,7 @@ import About from "../components/About";
 import FeaturedProjects from "../components/FeaturedProjects";
 import AllProjects from "../components/AllProjects";
 import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const navItems = [
@@ -56,16 +57,16 @@ export default function Home() {
   ];
   const allProjectItems = [
     [
-      "name-of-project",
-      "Name of project",
+      "airbnb-clone",
+      "Airbnb clone",
       "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
       [
         ["React", "https://reactjs.org/"],
         ["Next.js", "https://nextjs.org/"],
         ["Tailwindcss", "https://tailwindcss.com/"],
       ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
+      "https://airbnb-jouri.vercel.app/",
+      "https://github.com/JouriDeLigt/airbnb-jouri",
     ],
     [
       "name-of-project2",
@@ -154,9 +155,7 @@ export default function Home() {
         <Contact />
       </main>
 
-      <footer>
-        <p>Hey</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
