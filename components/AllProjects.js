@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-function AllProjects() {
+import SingleProject from "./SingleProject";
+function AllProjects(props) {
+  const allProjectItems = props.allProjectItems;
   return (
     <section
       className="relative w-full min-h-screen pt-16 flex items-start justify-center"
@@ -18,55 +20,16 @@ function AllProjects() {
           &lt;All projects &#47;&gt;
         </h2>
         <div className="grid gap-4 grid-cols-3 mt-16">
-          <div className="bg-white py-12 px-6 flex flex-col items-center rounded-2xl">
-            <h3 className="text-lg text-red-500 text-center leading-tight">
-              Name of project
-            </h3>
-            <p className="text-sm text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-              porttitor odio eu vulputate condimentum. Ut ullamcorper, velit et
-              fringilla congue, ex urna porta velit, non sagittis felis sapien
-              nec felis.Lorem ipsum dolor sit amet,{" "}
-            </p>
-            <div className="flex gap-2 mt-8">
-              <Link href="#">
-                <a
-                  target="_blank"
-                  className="text-sm hover:text-red-500 font-light underline transition ease-in-out duration-150"
-                >
-                  React
-                </a>
-              </Link>
-              <Link href="#">
-                <a
-                  target="_blank"
-                  className="text-sm hover:text-red-500 font-light underline transition ease-in-out duration-150"
-                >
-                  Next.js
-                </a>
-              </Link>
-              <Link href="#">
-                <a
-                  target="_blank"
-                  className="text-sm hover:text-red-500 font-light underline transition ease-in-out duration-150"
-                >
-                  Tailwindcss
-                </a>
-              </Link>
-            </div>
-            <div className="flex gap-2 mt-2">
-              <Link href="#">
-                <a target="_blank">
-                  <Image
-                    src="/static/images/github.png"
-                    alt="Github repo"
-                    width={25}
-                    height={25}
-                  />
-                </a>
-              </Link>
-            </div>
-          </div>
+          {allProjectItems.map(([slug, name, text, skills, url, repo]) => (
+            <SingleProject
+              key={slug}
+              name={name}
+              text={text}
+              skills={skills}
+              url={url}
+              repo={repo}
+            />
+          ))}
         </div>
       </div>
     </section>
