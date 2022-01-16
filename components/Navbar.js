@@ -10,11 +10,10 @@ function Navbar(props) {
         <Link href="/">
           <a>
             <Image
-              src={logo}
+              src="/static/images/logo-mark-black.png"
               alt="Jouri de Ligt logo"
               width={59}
               height={39}
-              priority
             />
           </a>
         </Link>
