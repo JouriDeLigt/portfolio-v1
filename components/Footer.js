@@ -1,8 +1,8 @@
 import Link from "next/link";
 function Footer() {
   return (
-    <footer className="relative w-full pt-16 pb-8 flex items-start justify-center">
-      <div className="bg-white py-8 px-8 rounded-2xl relative w-full max-w-5xl flex flex-col items-center">
+    <footer className="container relative w-full pt-16 pb-8 flex items-start justify-center">
+      <div className="w-full bg-white py-8 px-8 rounded-2xl relative flex flex-col items-center">
         <div className="flex flex-col gap-4">
           <div className="flex justify-between">
             <Link href="#" alt="Terms of service">
@@ -21,7 +21,7 @@ function Footer() {
               </a>
             </Link>
           </div>
-          <p className="font-bold">
+          <p className="font-bold text-center">
             Website designed by{" "}
             <Link
               href="https://twitter.com/VisualsbyFabi"

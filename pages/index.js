@@ -10,7 +10,7 @@ import AllProjects from "../components/AllProjects";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
-export default function Home() {
+export default function Home({ projects }) {
   const navItems = [
     ["About", "#about"],
     ["Featured projects", "#featured-projects"],
@@ -137,20 +137,13 @@ export default function Home() {
           name="description"
           content="Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!"
         />
-        <link rel="icon" href="/static/images/favicon.jpg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
       <Navbar navItems={navItems} socialItems={socialItems} />
       <main>
-        <Hero />
+        <Hero socialItems={socialItems} />
         <About skillItems={skillItems} />
-        <FeaturedProjects projectItems={projectItems} />
+        <FeaturedProjects projects={projects} />
         <AllProjects allProjectItems={allProjectItems} />
         <Contact />
       </main>
@@ -158,4 +151,15 @@ export default function Home() {
       <Footer />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const results = await fetch(
+    "https://cdn.contentful.com/spaces/homakvm13xkj/environments/master/entries?access_token=mNuXoWg7OLRCxJ-JHS0M0r2lcQA51pO7LyxxkqEwh_s&content_type=featuredProjects"
+  ).then((res) => res.json());
+  return {
+    props: {
+      projects: results,
+    },
+  };
 }

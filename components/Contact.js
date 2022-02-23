@@ -27,14 +27,16 @@ function Contact() {
         objectFit="contain"
         className="absolute inset-0 transform -scale-x-100 opacity-50"
       />
-      <div className="relative z-10 w-full max-w-5xl flex flex-col">
-        <h2 className="text-4xl font-bold capitalize">&lt;Contact &#47;&gt;</h2>
+      <div className="container relative z-10 flex flex-col">
+        <h2 className="text-2xl lg:text-4xl font-bold capitalize">
+          &lt;Contact &#47;&gt;
+        </h2>
         <div className="w-full border-2 border-black rounded-2xl mt-16 py-12 px-8">
           <form onSubmit={handleSubmit} className="grid grid-cols-12">
-            <h2 className="text-4xl font-bold col-span-3 leading-relaxed">
+            <h2 className="text-4xl font-bold col-span-12 sm:col-span-3 leading-relaxed">
               Want to get in touch?
             </h2>
-            <div className="flex flex-col gap-8 col-start-6 col-end-13">
+            <div className="flex flex-col gap-8 col-span-12 sm:col-start-6 sm:col-end-13">
               <label
                 htmlFor="name"
                 className="text-md text-red-500 font-bold flex flex-col"

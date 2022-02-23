@@ -13,8 +13,8 @@ function About(props) {
         objectFit="contain"
         className="absolute inset-0 transform -scale-x-100 opacity-50"
       />
-      <div className="relative z-10 w-full max-w-5xl flex flex-col">
-        <h2 className="text-4xl font-bold capitalize">
+      <div className="container relative z-10 flex flex-col">
+        <h2 className="text-2xl lg:text-4xl font-bold capitalize">
           &lt;About me &#47;&gt;
         </h2>
         <div className="relative h-96 mt-16">
@@ -26,7 +26,7 @@ function About(props) {
             className="rounded-2xl"
           />
         </div>
-        <p className="text-2xl mt-8 leading-tight">
+        <p className="text-lg lg:text-2xl mt-8 leading-tight">
           Nullam pretium et dui porta mollis. Nulla suscipit sagittis sem, quis
           posuere mauris placerat in. Maecenas ac dui feugiat, faucibus quam ut,
           lobortis mauris. Phasellus porttitor risus quam, a vehicula justo
@@ -37,7 +37,7 @@ function About(props) {
           {skillItems.map((skill) => (
             <p
               key={skill}
-              className="bg-red-500 text-white text-center px-16 py-2 text-lg w-fit rounded-lg flex-grow"
+              className="bg-red-500 text-white text-center px-16 py-2 text-base xl:text-lg w-fit rounded-lg flex-grow"
             >
               {skill}
             </p>
