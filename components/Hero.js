@@ -23,7 +23,8 @@ function Hero(props) {
           </h1>
         ) : (
           <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight">
-            Hey there i'm <span className="text-red-500 underline">Jouri</span>,
+            Hey there i&apos;m{" "}
+            <span className="text-red-500 underline">Jouri</span>,
             <br /> a junior front-end{" "}
             <span className="text-red-500 underline">developer</span> based in{" "}
             <span className="text-red-500 underline">The Netherlands</span>
