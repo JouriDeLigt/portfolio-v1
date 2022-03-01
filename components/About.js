@@ -1,4 +1,3 @@
-import Image from "next/image";
 function About(props) {
   const skillItems = props.skillItems;
   return (
@@ -6,26 +5,20 @@ function About(props) {
       className="relative w-full min-h-screen pt-16 flex items-start justify-center"
       id="about"
     >
-      <Image
+      <img
         src="/static/images/gradient-w.png"
         alt="gradient"
-        layout="fill"
-        objectFit="contain"
-        className="absolute inset-0 transform -scale-x-100 opacity-50"
+        className="absolute inset-0 transform -scale-x-100 opacity-50 object-contain"
       />
       <div className="container relative z-10 flex flex-col">
         <h2 className="text-2xl lg:text-4xl font-bold capitalize">
           &lt;About me &#47;&gt;
         </h2>
-        <div className="relative h-96 mt-16">
-          <Image
-            src="/static/images/dummy-image.jpeg"
-            alt="Dummy image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-2xl"
-          />
-        </div>
+        <img
+          src="/static/images/dummy-image.jpeg"
+          alt="Dummy image"
+          className="w-full h-96 mt-16 object-cover rounded-2xl"
+        />
         <p className="text-lg lg:text-2xl mt-8 leading-tight">
           Nullam pretium et dui porta mollis. Nulla suscipit sagittis sem, quis
           posuere mauris placerat in. Maecenas ac dui feugiat, faucibus quam ut,

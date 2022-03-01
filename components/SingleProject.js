@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 function SingleProject({ slug, name, text, skills, url, repo }) {
   return (
@@ -21,7 +20,7 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
         {url && (
           <Link href={url}>
             <a target="_blank">
-              <Image
+              <img
                 src="/static/images/external-url.png"
                 alt="Demo version"
                 width={25}
@@ -33,7 +32,7 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
         {repo && (
           <Link href={repo}>
             <a target="_blank">
-              <Image
+              <img
                 src="/static/images/github.png"
                 alt="Github repo"
                 width={25}

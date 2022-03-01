@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import logo from "/public/static/images/logo-mark-black.png";
 import { useState } from "react";
 
 function Navbar(props) {
@@ -10,10 +8,10 @@ function Navbar(props) {
   const [navIsOpen, setNavIsOpen] = useState(false);
   return (
     <header className="fixed z-50 top-0 left-0 w-full">
-      <div className="flex items-center justify-between px-[10px] sm:px-[35px] lg:px-8 py-4 sm:py-8">
+      <div className="flex items-start justify-between px-[10px] sm:px-[35px] lg:px-8 py-4 sm:py-8">
         <Link href="/">
           <a>
-            <Image
+            <img
               src="/static/images/logo-mark-black.png"
               alt="Jouri de Ligt logo"
               width={59}
@@ -56,12 +54,11 @@ function Navbar(props) {
                   rel="noopener"
                   className="transform rotate-90"
                 >
-                  <Image
+                  <img
                     src={"/static/images/" + icon}
                     alt={name}
                     width={25}
                     height={25}
-                    priority
                   />
                 </a>
               </Link>

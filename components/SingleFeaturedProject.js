@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 function SingleFeaturedProject({
@@ -15,15 +14,11 @@ function SingleFeaturedProject({
   // console.log(jema);
   return (
     <div className="group w-full flex flex-col xl:flex-row xl:even:flex-row-reverse xl:gap-4">
-      <div className="relative w-full h-[300px] xl:w-1/2 xl:h-auto">
-        <Image
-          src={"/static/images/" + image}
-          alt="Dummy image"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-2xl"
-        />
-      </div>
+      <img
+        src={"/static/images/" + image}
+        alt="Dummy image"
+        className=" w-full h-[300px] xl:w-1/2 xl:h-auto rounded-2xl object-cover"
+      />
       <div className="-mt-8 xl:mt-0 w-full xl:w-1/2 flex flex-col group-odd:items-start group-even:items-end">
         <p className="hidden xl:block text-sm font-light leading-none text-black">
           Featured Project
@@ -58,7 +53,7 @@ function SingleFeaturedProject({
               <a className="text-md text-red-500 font-bold flex items-center">
                 View project
                 <div className="relative w-5 h-5 ml-4 group-hover:ml-6 rounded-full border-2 border-solid border-red-500 transition-margin ease-in-out duration-200 flex items-center justify-center">
-                  <Image
+                  <img
                     src="/static/images/arrow.svg"
                     alt="Arrow"
                     width={15}

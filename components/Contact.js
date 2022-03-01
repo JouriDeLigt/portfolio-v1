@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 function Contact() {
   const [name, setName] = useState("");
@@ -20,12 +19,10 @@ function Contact() {
       className="relative w-full min-h-screen pt-16 flex items-start justify-center"
       id="contact"
     >
-      <Image
+      <img
         src="/static/images/gradient-w.png"
         alt="gradient"
-        layout="fill"
-        objectFit="contain"
-        className="absolute inset-0 transform -scale-x-100 opacity-50"
+        className="absolute inset-0 transform -scale-x-100 opacity-50 object-contain"
       />
       <div className="container relative z-10 flex flex-col">
         <h2 className="text-2xl lg:text-4xl font-bold capitalize">
