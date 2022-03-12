@@ -6,17 +6,17 @@ function Footer() {
         <div className="flex flex-col gap-4">
           <div className="flex justify-between">
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Terms of service
               </a>
             </Link>
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Cookie policy
               </a>
             </Link>
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Privacy policy
               </a>
             </Link>
@@ -27,7 +27,7 @@ function Footer() {
               href="https://twitter.com/VisualsbyFabi"
               alt="Visuals by Fabi"
             >
-              <a target="_blank" className="text-red-500 font-bold">
+              <a target="_blank" className="text-jl_red font-bold">
                 @VisualsbyFabi
               </a>
             </Link>{" "}
@@ -36,7 +36,7 @@ function Footer() {
               href="https://twitter.com/JourideLigt"
               alt="Jouri de Ligt | Front-end developer"
             >
-              <a target="_blank" className="text-red-500 font-bold">
+              <a target="_blank" className="text-jl_red font-bold">
                 @JaayLight
               </a>
             </Link>

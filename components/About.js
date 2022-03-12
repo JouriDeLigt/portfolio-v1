@@ -19,7 +19,7 @@ function About(props) {
           alt="Dummy image"
           className="w-full h-96 mt-16 object-cover rounded-2xl"
         />
-        <p className="text-lg lg:text-2xl mt-8 leading-tight">
+        <p className="text-lg lg:text-md mt-8 leading-tight">
           Nullam pretium et dui porta mollis. Nulla suscipit sagittis sem, quis
           posuere mauris placerat in. Maecenas ac dui feugiat, faucibus quam ut,
           lobortis mauris. Phasellus porttitor risus quam, a vehicula justo
@@ -30,7 +30,7 @@ function About(props) {
           {skillItems.map((skill) => (
             <p
               key={skill}
-              className="bg-red-500 text-white text-center px-16 py-2 text-base xl:text-lg w-fit rounded-lg flex-grow"
+              className="bg-jl_red text-white text-center px-16 py-2 text-base xl:text-md w-fit rounded-lg flex-grow"
             >
               {skill}
             </p>

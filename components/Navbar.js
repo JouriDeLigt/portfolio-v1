@@ -19,21 +19,23 @@ function Navbar(props) {
             />
           </a>
         </Link>
-        <nav className="hidden lg:flex flex-col items-center space-y-4">
-          {navItems.map(([title, url]) => (
-            <Link href={url} key={url}>
-              <a className="group capitalize">
-                <span className="group-hover:text-red-500 transition duration-300 ease-in-out">
-                  &lt;
-                </span>
-                {title}
-                <span className="group-hover:text-red-500 transition duration-300 ease-in-out">
-                  &#47;&gt;
-                </span>
-              </a>
-            </Link>
-          ))}
-        </nav>
+        {navItems && (
+          <nav className="hidden lg:flex flex-col items-center space-y-4">
+            {navItems.map(([title, url]) => (
+              <Link href={url} key={url}>
+                <a className="group capitalize">
+                  <span className="group-hover:text-jl_red transition duration-300 ease-in-out">
+                    &lt;
+                  </span>
+                  {title}
+                  <span className="group-hover:text-jl_red transition duration-300 ease-in-out">
+                    &#47;&gt;
+                  </span>
+                </a>
+              </Link>
+            ))}
+          </nav>
+        )}
         <div
           className="lg:hidden relative w-[42px] h-[27px]"
           onClick={() => (navIsOpen ? setNavIsOpen(false) : setNavIsOpen(true))}
@@ -76,29 +78,31 @@ function Navbar(props) {
           className="absolute top-4 left-4 w-[40px] h-[40px]"
           onClick={() => (navIsOpen ? setNavIsOpen(false) : setNavIsOpen(true))}
         >
-          <div className="absolute top-1/2 transform -translate-y-1/2 rotate-45 w-full h-[5px] bg-red-500 rounded-full"></div>
-          <div className="absolute top-1/2 transform -translate-y-1/2 -rotate-45 w-full h-[5px] bg-red-500 rounded-full"></div>
+          <div className="absolute top-1/2 transform -translate-y-1/2 rotate-45 w-full h-[5px] bg-jl_red rounded-full"></div>
+          <div className="absolute top-1/2 transform -translate-y-1/2 -rotate-45 w-full h-[5px] bg-jl_red rounded-full"></div>
         </div>
-        <nav className="flex flex-col items-center space-y-4">
-          {navItems.map(([title, url]) => (
-            <Link href={url} key={url}>
-              <a
-                className="group capitalize"
-                onClick={() =>
-                  navIsOpen ? setNavIsOpen(false) : setNavIsOpen(true)
-                }
-              >
-                <span className="group-hover:text-red-500 transition duration-300 ease-in-out">
-                  &lt;
-                </span>
-                {title}
-                <span className="group-hover:text-red-500 transition duration-300 ease-in-out">
-                  &#47;&gt;
-                </span>
-              </a>
-            </Link>
-          ))}
-        </nav>
+        {navItems && (
+          <nav className="flex flex-col items-center space-y-4">
+            {navItems.map(([title, url]) => (
+              <Link href={url} key={url}>
+                <a
+                  className="group capitalize"
+                  onClick={() =>
+                    navIsOpen ? setNavIsOpen(false) : setNavIsOpen(true)
+                  }
+                >
+                  <span className="group-hover:text-jl_red transition duration-300 ease-in-out">
+                    &lt;
+                  </span>
+                  {title}
+                  <span className="group-hover:text-jl_red transition duration-300 ease-in-out">
+                    &#47;&gt;
+                  </span>
+                </a>
+              </Link>
+            ))}
+          </nav>
+        )}
       </div>
     </header>
   );

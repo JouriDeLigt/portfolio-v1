@@ -8,7 +8,12 @@ module.exports = {
     fontFamily: {
       sans: ["Space Grotesk", "Lato"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        jl_red: "#ee1b49",
+        jl_black: "#08080F",
+      },
+    },
   },
   plugins: [],
 };

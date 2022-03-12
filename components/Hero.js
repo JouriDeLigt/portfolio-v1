@@ -18,16 +18,16 @@ function Hero(props) {
       />
       <div className="container z-10 flex flex-col">
         {title?.length > 0 ? (
-          <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight">
+          <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight text-jl_black">
             {title}
           </h1>
         ) : (
-          <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight">
+          <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight text-jl_black">
             Hey there i&apos;m{" "}
-            <span className="text-red-500 underline">Jouri</span>,
+            <span className="text-jl_red underline">Jouri</span>,
             <br /> a junior front-end{" "}
-            <span className="text-red-500 underline">developer</span> based in{" "}
-            <span className="text-red-500 underline">The Netherlands</span>
+            <span className="text-jl_red underline">developer</span> based in{" "}
+            <span className="text-jl_red underline">The Netherlands</span>
           </h1>
         )}
         {subtext?.length > 0 ? (
@@ -35,14 +35,14 @@ function Hero(props) {
         ) : (
           <p className="text-lg xl:text-2xl mt-8 leading-tight">
             Cras et aliquet diam. Aliquam lacinia ex eros, vel{" "}
-            <span className="text-red-500 underline">mollis ex varius</span>{" "}
-            vel. Maecenas a orci vitae orci sollicitudin rhoncus.
+            <span className="text-jl_red underline">mollis ex varius</span> vel.
+            Maecenas a orci vitae orci sollicitudin rhoncus.
           </p>
         )}
         {url?.length > 0 ? (
           <Link href={url}>
             <a
-              className="bg-red-500 text-white px-4 py-2 text-lg w-fit rounded-lg mt-6"
+              className="bg-jl_red text-white px-4 py-2 text-lg w-fit rounded-lg mt-6"
               target="_blank"
               rel="noopener"
             >
@@ -51,7 +51,7 @@ function Hero(props) {
           </Link>
         ) : (
           <Link href="#featured-projects">
-            <a className="bg-red-500 text-white px-4 py-2 text-lg w-fit rounded-lg mt-6">
+            <a className="bg-jl_red text-white px-4 py-2 text-lg w-fit rounded-lg mt-6">
               &lt;View work&#47;&gt;
             </a>
           </Link>
@@ -64,12 +64,11 @@ function Hero(props) {
               {socialItems.map(([name, icon, url]) => (
                 <Link href={url} key={name}>
                   <a target="_blank" rel="noopener">
-                    <Image
+                    <img
                       src={"/static/images/" + icon}
                       alt={name}
                       width={25}
                       height={25}
-                      priority
                     />
                   </a>
                 </Link>

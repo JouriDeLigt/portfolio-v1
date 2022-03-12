@@ -1,7 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -11,6 +9,7 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 export default function Home({ projects }) {
+  console.log(projects);
   const navItems = [
     ["About", "#about"],
     ["Featured projects", "#featured-projects"],
@@ -59,7 +58,7 @@ export default function Home({ projects }) {
     [
       "airbnb-clone",
       "Airbnb clone",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
+      "Airbnb-clone build based on a tutorial. Using React.js for the front-end, Next.js for server side functions and TailwindCSS for component based styling. Together with the Mapbox API for a seemless map integration.",
       [
         ["React", "https://reactjs.org/"],
         ["Next.js", "https://nextjs.org/"],
@@ -67,66 +66,6 @@ export default function Home({ projects }) {
       ],
       "https://airbnb-jouri.vercel.app/",
       "https://github.com/JouriDeLigt/airbnb-jouri",
-    ],
-    [
-      "name-of-project2",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
-    ],
-    [
-      "name-of-project3",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
-    ],
-    [
-      "name-of-project4",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
-    ],
-    [
-      "name-of-project5",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
-    ],
-    [
-      "name-of-project6",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-      "",
-      "https://github.com/JouriDeLigt/portfolio-v1",
     ],
   ];
   return (

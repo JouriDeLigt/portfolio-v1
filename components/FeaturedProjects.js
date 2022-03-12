@@ -2,18 +2,6 @@ import SingleFeaturedProject from "./SingleFeaturedProject";
 
 function FeaturedProjects({ projects }) {
   const projectItems = projects;
-  // console.log(projectItems.items[0].fields.skills);
-  // var skills = projectItems.items[0].fields.skills[0].sys.id;
-  var skills = projectItems.items[0].fields.skills.map((item) => item.sys.id);
-  var availableSkills = projectItems.includes.Entry;
-  var availableSkills = availableSkills.map((item) => [
-    {
-      id: item.sys.id,
-      name: item.fields.name,
-      url: item.fields.url,
-    },
-  ]);
-  console.log(availableSkills);
 
   return (
     <section
@@ -36,9 +24,9 @@ function FeaturedProjects({ projects }) {
               slug={item.fields.slug}
               name={item.fields.title}
               text={item.fields.excerpt}
-              image="dummy-image.jpeg"
-              skills={item.fields.skills}
-              availableSkills={availableSkills}
+              image="hrpp-home.png"
+              skillName={item.fields.skillName}
+              skillUrl={item.fields.skillUrl}
             />
           ))}
         </div>
