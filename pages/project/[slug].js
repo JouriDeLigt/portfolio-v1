@@ -9,18 +9,32 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export default function Project({ project }) {
+export default function Project({ projectData }) {
   const navItems = [["Back to main page", "/"]];
   const socialItems = [
     ["Linkedin", "linkedin.png", "https://www.linkedin.com/in/jouri-de-ligt/"],
     ["Github", "github.png", "https://github.com/JouriDeLigt"],
     ["Instagram", "instagram.png", "https://www.instagram.com/jouri.ligt/"],
   ];
-  console.log(project);
+  var images = projectData.includes.Asset.map((item) => ({
+    url: item.fields.file.url,
+    id: item.sys.id,
+  }));
+  var project = projectData.items[0];
+
+  var desktopImagesArr = project.fields.desktopImages.map((item) => {
+    return item.sys.id;
+  });
+  var desktopImages = images.filter((a) => desktopImagesArr.includes(a.id));
+
+  var mobileImagesArr = project.fields.mobileImages.map((item) => {
+    return item.sys.id;
+  });
+  var mobileImages = images.filter((a) => mobileImagesArr.includes(a.id));
   return (
     <div className="page">
       <Head>
-        <title>Jouri de ligt | Front-end developer</title>
+        <title>Jouri de ligt | {project.fields.title}</title>
         <meta
           name="description"
           content="Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!"
@@ -41,32 +55,24 @@ export default function Project({ project }) {
               <div className="grid grid-cols-2 gap-8">
                 <div className="w-full col-span-1">
                   <img
-                    src="/static/images/hrpp-services.png"
+                    src={desktopImages[0].url}
                     className="w-full h-full object-cover rounded-2xl shadow-md"
                   />
                 </div>
                 <div className="w-full col-span-1">
                   <img
-                    src="/static/images/hrpp-careers.png"
+                    src={desktopImages[1].url}
                     className="w-full h-full object-cover rounded-2xl shadow-md"
                   />
                 </div>
                 <div className="w-full max-h-[300px] col-span-2">
                   <img
-                    src="/static/images/hrpp-home.png"
+                    src={desktopImages[2].url}
                     className="w-full h-full object-cover rounded-2xl shadow-md"
                   />
                 </div>
               </div>
-              <p className="mt-4">
-                nascetur ridiculus mus. Cras ex justo, fringilla sed nisl sit
-                amet, ultrices ultrices diam. Proin sollicitudin molestie augue
-                eleifend congue. Nunc at elementum mi. Sed lorem turpis, commodo
-                et eros aliquet, aliquet hendrerit massa. Donec ullamcorper
-                risus eu neque ornare, in accumsan nisi suscipit. Cras ligula
-                risus, sodales sed dolor vitae, sollicitudin efficitur elit.
-                Etiam eu sodales risus, ac tincidunt nibh.
-              </p>
+              <p className="mt-4">{project.fields.desktopText}</p>
             </div>
             <div className="mt-20 p-8 flex flex-col bg-white rounded-2xl">
               <Swiper
@@ -79,58 +85,16 @@ export default function Project({ project }) {
                 loop={true}
                 className="w-full"
               >
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-home.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-about.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-services.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-careers.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-vacancy.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-contact.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img
-                    src="/static/images/hrpp-mobile-menu.png"
-                    className="w-full h-full rounded-2xl shadow-md"
-                  />
-                </SwiperSlide>
+                {mobileImages.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <img
+                      src={item.url}
+                      className="w-full h-full rounded-2xl shadow-md"
+                    />
+                  </SwiperSlide>
+                ))}
               </Swiper>
-              <p className="mt-4">
-                nascetur ridiculus mus. Cras ex justo, fringilla sed nisl sit
-                amet, ultrices ultrices diam. Proin sollicitudin molestie augue
-                eleifend congue. Nunc at elementum mi. Sed lorem turpis, commodo
-                et eros aliquet, aliquet hendrerit massa. Donec ullamcorper
-                risus eu neque ornare, in accumsan nisi suscipit. Cras ligula
-                risus, sodales sed dolor vitae, sollicitudin efficitur elit.
-                Etiam eu sodales risus, ac tincidunt nibh.
-              </p>
+              <p className="mt-4">{project.fields.mobileText}</p>
             </div>
           </div>
         </section>
@@ -160,11 +124,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const slug = params.slug;
   const results = await fetch(
-    `https://cdn.contentful.com/spaces/homakvm13xkj/environments/master/entries?access_token=mNuXoWg7OLRCxJ-JHS0M0r2lcQA51pO7LyxxkqEwh_s&content_type=featuredProjects&fields.slug=${slug}`
+    `https://cdn.contentful.com/spaces/homakvm13xkj/environments/master/entries?access_token=mNuXoWg7OLRCxJ-JHS0M0r2lcQA51pO7LyxxkqEwh_s&content_type=featuredProjects&fields.slug=${slug}&include=10`
   ).then((res) => res.json());
   return {
     props: {
-      project: results.items[0],
+      projectData: results,
     },
   };
 }

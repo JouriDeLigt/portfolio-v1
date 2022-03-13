@@ -34,9 +34,19 @@ function Hero(props) {
           <p className="text-lg xl:text-2xl mt-8 leading-tight">{subtext}</p>
         ) : (
           <p className="text-lg xl:text-2xl mt-8 leading-tight">
-            Cras et aliquet diam. Aliquam lacinia ex eros, vel{" "}
-            <span className="text-jl_red underline">mollis ex varius</span> vel.
-            Maecenas a orci vitae orci sollicitudin rhoncus.
+            Currently working full-time for{" "}
+            <Link href="https://paddap.nl/">
+              <a target="_blank" className="text-jl_red underline">
+                PADDAP Digital Agency
+              </a>
+            </Link>{" "}
+            as a{" "}
+            <span className="text-jl_red underline">
+              Junior Front-end Developer
+            </span>{" "}
+            and working on personal projects to{" "}
+            <span className="text-jl_red underline">develop</span> myself even
+            more!
           </p>
         )}
         {url?.length > 0 ? (

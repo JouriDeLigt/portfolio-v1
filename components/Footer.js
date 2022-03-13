@@ -4,7 +4,7 @@ function Footer() {
     <footer className="container relative w-full pt-16 pb-8 flex items-start justify-center">
       <div className="w-full bg-white py-8 px-8 rounded-2xl relative flex flex-col items-center">
         <div className="flex flex-col gap-4">
-          <div className="flex justify-between">
+          <div className="!hidden flex justify-between">
             <Link href="#" alt="Terms of service">
               <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Terms of service
@@ -37,7 +37,7 @@ function Footer() {
               alt="Jouri de Ligt | Front-end developer"
             >
               <a target="_blank" className="text-jl_red font-bold">
-                @JaayLight
+                @JourideLigt
               </a>
             </Link>
           </p>

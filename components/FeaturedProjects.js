@@ -1,8 +1,6 @@
 import SingleFeaturedProject from "./SingleFeaturedProject";
 
-function FeaturedProjects({ projects }) {
-  const projectItems = projects;
-
+function FeaturedProjects({ projects, projectImages }) {
   return (
     <section
       className="relative w-full min-h-screen pt-16 flex items-start justify-center"
@@ -18,15 +16,16 @@ function FeaturedProjects({ projects }) {
           &lt;Featured projects &#47;&gt;
         </h2>
         <div className="flex flex-col gap-16 xl:gap-8 mt-16">
-          {projectItems.items.map((item, i) => (
+          {projects.items.map((item, i) => (
             <SingleFeaturedProject
               key={item.fields.slug}
               slug={item.fields.slug}
               name={item.fields.title}
               text={item.fields.excerpt}
-              image="hrpp-home.png"
+              image={item.fields.thumbnail.sys.id}
               skillName={item.fields.skillName}
               skillUrl={item.fields.skillUrl}
+              projectImages={projectImages}
             />
           ))}
         </div>

@@ -17,7 +17,7 @@ export default function Custom404() {
   return (
     <div className="page">
       <Head>
-        <title>Jouri de ligt | Front-end developer</title>
+        <title>Jouri de ligt | 404 error</title>
         <meta
           name="description"
           content="Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!"

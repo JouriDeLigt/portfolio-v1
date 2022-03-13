@@ -4,7 +4,7 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
     <div className="bg-white py-12 px-6 flex flex-col items-center rounded-2xl">
       <h3 className="text-lg text-jl_red text-center leading-tight">{name}</h3>
       <p className="text-sm text-center">{text}</p>
-      <div className="flex gap-2 mt-8">
+      <div className="flex items-end flex-grow gap-2 mt-8">
         {skills.map(([name, url]) => (
           <Link key={name} href={url}>
             <a

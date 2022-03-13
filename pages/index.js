@@ -9,7 +9,10 @@ import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 export default function Home({ projects }) {
-  console.log(projects);
+  var projectImages = projects.includes.Asset.map((item) => ({
+    url: item.fields.file.url,
+    id: item.sys.id,
+  }));
   const navItems = [
     ["About", "#about"],
     ["Featured projects", "#featured-projects"],
@@ -29,32 +32,21 @@ export default function Home({ projects }) {
     "Github",
     "DevOps",
     "DigitalOcean",
-  ];
-  const projectItems = [
-    [
-      "name-of-project",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      "dummy-image.jpeg",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-    ],
-    [
-      "name-of-project2",
-      "Name of project",
-      "Curabitur tempus nunc quis arcu hendrerit, sit amet faucibus justo elementum. Etiam sagittis nisl a laoreet interdum. Phasellus imperdiet libero sit amet rutrum ultrices. Duis id libero blandit, finibus urna finibus, viverra leo.",
-      "dummy-image.jpeg",
-      [
-        ["React", "https://reactjs.org/"],
-        ["Next.js", "https://nextjs.org/"],
-        ["Tailwindcss", "https://tailwindcss.com/"],
-      ],
-    ],
+    "Vercel",
   ];
   const allProjectItems = [
+    [
+      "jouri-de-ligt-portfolio-v1",
+      "Jouri de Ligt - Portfolio V1",
+      "Portfolio V1 is a React.js/ Next.js based portfolio website powered by contentful CMS. Deployment is done using Vercel. Its my first portfolio built with something diferent then Wordpress.",
+      [
+        ["React", "https://reactjs.org/"],
+        ["Next.js", "https://nextjs.org/"],
+        ["Tailwindcss", "https://tailwindcss.com/"],
+      ],
+      "https://jourideligt.dev",
+      "https://github.com/JouriDeLigt/portfolio-v1",
+    ],
     [
       "airbnb-clone",
       "Airbnb clone",
@@ -71,7 +63,7 @@ export default function Home({ projects }) {
   return (
     <div className="page">
       <Head>
-        <title>Jouri de ligt | Front-end developer</title>
+        <title>Jouri de ligt | Home</title>
         <meta
           name="description"
           content="Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!"
@@ -82,7 +74,7 @@ export default function Home({ projects }) {
       <main>
         <Hero socialItems={socialItems} />
         <About skillItems={skillItems} />
-        <FeaturedProjects projects={projects} />
+        <FeaturedProjects projects={projects} projectImages={projectImages} />
         <AllProjects allProjectItems={allProjectItems} />
         <Contact />
       </main>

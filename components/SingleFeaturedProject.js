@@ -7,11 +7,15 @@ function SingleFeaturedProject({
   image,
   skillName,
   skillUrl,
+  projectImages,
 }) {
+  var thumbnail = projectImages.filter((a) => a.id == image);
+  var thumbnail = thumbnail[0].url;
+
   return (
     <div className="group w-full flex flex-col xl:flex-row xl:even:flex-row-reverse xl:gap-4">
       <img
-        src={"/static/images/" + image}
+        src={thumbnail}
         alt="Dummy image"
         className=" w-full h-[300px] xl:w-1/2 xl:h-auto rounded-2xl object-cover"
       />
@@ -19,7 +23,7 @@ function SingleFeaturedProject({
         <p className="hidden xl:block text-sm font-light leading-none text-black">
           Featured Project
         </p>
-        <h3 className="hidden xl:block text-3xl font-bold leading-none text-jl_red">
+        <h3 className="hidden xl:block text-2xl font-bold leading-none text-jl_red">
           {name}
         </h3>
         <div className="text-center xl:group-odd:text-left xl:group-even:text-right bg-white p-12 drop-shadow-xl rounded-2xl xl:mt-4 transform xl:group-odd:-translate-x-12 xl:group-even:translate-x-12 xl:w-[calc(100%_+_3rem)]">
