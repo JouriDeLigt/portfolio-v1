@@ -113,3 +113,12 @@ body {
 .swiper .swiper-slide.swiper-slide-next:after {
   opacity: 1;
 }
+
+.max-rows-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

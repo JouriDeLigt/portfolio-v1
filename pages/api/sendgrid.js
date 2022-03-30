@@ -4,8 +4,6 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 async function sendEmail(req, res) {
   try {
-    // console.log("REQ.BODY", req.body);
-
     // Mail to user
     await sendgrid.send({
       to: `${req.body.email}`, // Your email where you'll receive emails
@@ -14,7 +12,9 @@ async function sendEmail(req, res) {
       html: `<div><p>Dear ${req.body.name},<br />
       Thanks for reaching out to me!<br />
       I will try to contact you asap!<br /><br />
-      Have a great day!
+      For now, have a great day!<br/><br/>
+      Kind regards,<br/>
+      Jouri de Ligt | Front-end developer
       </div>`,
     });
     // Mail to growgo
@@ -29,7 +29,6 @@ async function sendEmail(req, res) {
       </div>`,
     });
   } catch (error) {
-    // console.log(error);
     return res.status(error.statusCode || 500).json({ error: error.message });
   }
   return res.status(200).json({ succes: true, error: "" });

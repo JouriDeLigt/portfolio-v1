@@ -9,6 +9,7 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
           <Link key={name} href={url}>
             <a
               target="_blank"
+              rel="noopener"
               className="text-sm hover:text-jl_red font-light underline transition ease-in-out duration-150"
             >
               {name}
@@ -19,9 +20,9 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
       <div className="flex gap-4 mt-4">
         {url && (
           <Link href={url}>
-            <a target="_blank">
+            <a target="_blank" rel="noopener">
               <img
-                src="/static/images/external-url.png"
+                src="/static/icons/external-url.png"
                 alt="Demo version"
                 width={25}
                 height={25}
@@ -31,9 +32,9 @@ function SingleProject({ slug, name, text, skills, url, repo }) {
         )}
         {repo && (
           <Link href={repo}>
-            <a target="_blank">
+            <a target="_blank" rel="noopener">
               <img
-                src="/static/images/github.png"
+                src="/static/icons/github.png"
                 alt="Github repo"
                 width={25}
                 height={25}

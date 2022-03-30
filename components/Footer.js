@@ -27,7 +27,11 @@ function Footer() {
               href="https://twitter.com/VisualsbyFabi"
               alt="Visuals by Fabi"
             >
-              <a target="_blank" className="text-jl_red font-bold">
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red font-bold"
+              >
                 @VisualsbyFabi
               </a>
             </Link>{" "}
@@ -36,7 +40,11 @@ function Footer() {
               href="https://twitter.com/JourideLigt"
               alt="Jouri de Ligt | Front-end developer"
             >
-              <a target="_blank" className="text-jl_red font-bold">
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red font-bold"
+              >
                 @JourideLigt
               </a>
             </Link>

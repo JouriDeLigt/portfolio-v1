@@ -12,7 +12,7 @@ function Navbar(props) {
         <Link href="/">
           <a>
             <img
-              src="/static/images/logo-mark-black.png"
+              src="/static/logo/logo-mark-black.png"
               alt="Jouri de Ligt logo"
               width={59}
               height={39}
@@ -57,7 +57,7 @@ function Navbar(props) {
                   className="transform rotate-90"
                 >
                   <img
-                    src={"/static/images/" + icon}
+                    src={"/static/icons/" + icon}
                     alt={name}
                     width={25}
                     height={25}

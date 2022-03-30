@@ -15,7 +15,7 @@ function FeaturedProjects({ projects, projectImages }) {
         <h2 className="text-2xl lg:text-4xl font-bold capitalize">
           &lt;Featured projects &#47;&gt;
         </h2>
-        <div className="flex flex-col gap-16 xl:gap-8 mt-16">
+        <div className="flex flex-col gap-16 mt-16">
           {projects.items.map((item, i) => (
             <SingleFeaturedProject
               key={item.fields.slug}

@@ -51,11 +51,10 @@ export default function Custom404() {
                   <Link href={url} key={name}>
                     <a target="_blank" rel="noopener">
                       <img
-                        src={"/static/images/" + icon}
+                        src={"/static/icons/" + icon}
                         alt={name}
                         width={25}
                         height={25}
-                        priority
                       />
                     </a>
                   </Link>

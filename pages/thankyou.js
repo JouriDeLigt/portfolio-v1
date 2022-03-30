@@ -46,7 +46,11 @@ export default function thankyou() {
               href="https://twitter.com/JourideLigt"
               alt="Twitter - Jouri de Ligt"
             >
-              <a target="_blank" className="text-jl_red font-bold">
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red font-bold"
+              >
                 Twitter
               </a>
             </Link>
@@ -66,11 +70,10 @@ export default function thankyou() {
                   <Link href={url} key={name}>
                     <a target="_blank" rel="noopener">
                       <img
-                        src={"/static/images/" + icon}
+                        src={"/static/icons/" + icon}
                         alt={name}
                         width={25}
                         height={25}
-                        priority
                       />
                     </a>
                   </Link>

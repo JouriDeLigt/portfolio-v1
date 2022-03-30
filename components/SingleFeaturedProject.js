@@ -23,7 +23,7 @@ function SingleFeaturedProject({
         <p className="hidden xl:block text-sm font-light leading-none text-black">
           Featured Project
         </p>
-        <h3 className="hidden xl:block text-2xl font-bold leading-none text-jl_red">
+        <h3 className="hidden xl:block text-2xl font-bold leading-none text-jl_red mt-2">
           {name}
         </h3>
         <div className="text-center xl:group-odd:text-left xl:group-even:text-right bg-white p-12 drop-shadow-xl rounded-2xl xl:mt-4 transform xl:group-odd:-translate-x-12 xl:group-even:translate-x-12 xl:w-[calc(100%_+_3rem)]">
@@ -33,7 +33,7 @@ function SingleFeaturedProject({
           <h3 className="xl:hidden mb-2 text-3xl font-bold leading-none text-jl_red">
             {name}
           </h3>
-          <p className="text-md text-black font-light">{text}</p>
+          <p className="text-md text-black font-light max-rows-3">{text}</p>
         </div>
         <div className="w-full mt-4 flex group-odd:flex-row group-even:flex-row-reverse justify-between">
           <div className="flex gap-2">
@@ -54,7 +54,7 @@ function SingleFeaturedProject({
                 View project
                 <div className="relative w-5 h-5 ml-4 group-hover:ml-6 rounded-full border-2 border-solid border-jl_red transition-margin ease-in-out duration-200 flex items-center justify-center">
                   <img
-                    src="/static/images/arrow.svg"
+                    src="/static/icons/arrow.svg"
                     alt="Arrow"
                     width={15}
                     height={15}

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 function Contact() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -10,7 +12,7 @@ function Contact() {
     formState: { errors },
   } = useForm();
 
-  const [succes, setSucces] = useState();
+  // const [succes, setSucces] = useState("false");
 
   const onSubmit = (data) => {
     fetch("/api/sendgrid", {
@@ -22,8 +24,7 @@ function Contact() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setSucces(data.succes);
-        router.push("/thankyou");
+        data.succes === true ? router.push("/thankyou") : router.push("/404");
       });
   };
 
@@ -42,12 +43,7 @@ function Contact() {
           &lt;Contact &#47;&gt;
         </h2>
         <div className="w-full border-2 border-black rounded-2xl mt-16 py-12 px-8">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={`grid grid-cols-12 ${
-              succes && "blur-md opacity-20 pointer-events-none"
-            }`}
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-12">
             <h2 className="text-4xl font-bold col-span-12 sm:col-span-3 leading-relaxed">
               Want to get in touch?
             </h2>
@@ -105,11 +101,6 @@ function Contact() {
               Submit
             </button>
           </form>
-          {succes && (
-            <h3 className="absolute text-white text-2xl font-bold text-center top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-              {succes}
-            </h3>
-          )}
         </div>
       </div>
     </section>

@@ -68,7 +68,7 @@ export default function Project({ projectData }) {
                 <div className="w-full max-h-[300px] col-span-2">
                   <img
                     src={desktopImages[2].url}
-                    className="w-full h-full object-cover rounded-2xl shadow-md"
+                    className="w-full h-full object-cover object-top rounded-2xl shadow-md"
                   />
                 </div>
               </div>

@@ -36,7 +36,11 @@ function Hero(props) {
           <p className="text-lg xl:text-2xl mt-8 leading-tight">
             Currently working full-time for{" "}
             <Link href="https://paddap.nl/">
-              <a target="_blank" className="text-jl_red underline">
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red underline"
+              >
                 PADDAP Digital Agency
               </a>
             </Link>{" "}
@@ -75,7 +79,7 @@ function Hero(props) {
                 <Link href={url} key={name}>
                   <a target="_blank" rel="noopener">
                     <img
-                      src={"/static/images/" + icon}
+                      src={"/static/icons/" + icon}
                       alt={name}
                       width={25}
                       height={25}
