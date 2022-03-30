@@ -118,7 +118,7 @@ export async function getStaticPaths() {
         },
       };
     }),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 export async function getStaticProps({ params }) {
