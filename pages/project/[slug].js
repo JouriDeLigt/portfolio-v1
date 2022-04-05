@@ -72,7 +72,9 @@ export default function Project({ projectData }) {
                   />
                 </div>
               </div>
-              <p className="mt-4">{project.fields.desktopText}</p>
+              {project.fields.desktopText && (
+                <p className="mt-4">{project.fields.desktopText}</p>
+              )}
             </div>
             <div className="mt-20 p-8 flex flex-col bg-white rounded-2xl">
               <Swiper
@@ -94,7 +96,9 @@ export default function Project({ projectData }) {
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <p className="mt-4">{project.fields.mobileText}</p>
+              {project.fields.mobileText && (
+                <p className="mt-4">{project.fields.mobileText}</p>
+              )}
             </div>
           </div>
         </section>
@@ -132,14 +136,3 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-
-// export async function getServerSideProps() {
-//   const results = await fetch(
-//     "https://cdn.contentful.com/spaces/homakvm13xkj/environments/master/entries?access_token=mNuXoWg7OLRCxJ-JHS0M0r2lcQA51pO7LyxxkqEwh_s&content_type=featuredProjects"
-//   ).then((res) => res.json());
-//   return {
-//     props: {
-//       project: results.items[0],
-//     },
-//   };
-// }

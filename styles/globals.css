@@ -61,6 +61,7 @@ body {
   font-size: 40px;
 }
 .swiper .swiper-pagination {
+  bottom: unset !important;
   margin-top: 25px;
   position: relative;
   order: 1;

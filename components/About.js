@@ -20,11 +20,11 @@ function About(props) {
           className="w-full h-96 mt-16 object-cover rounded-2xl"
         />
         <p className="text-lg lg:text-md mt-8 leading-tight">
-          Nullam pretium et dui porta mollis. Nulla suscipit sagittis sem, quis
-          posuere mauris placerat in. Maecenas ac dui feugiat, faucibus quam ut,
-          lobortis mauris. Phasellus porttitor risus quam, a vehicula justo
-          ultricies vitae. Proin tincidunt, metus in Maecenas vitae vehicula
-          nunc. Vestibulum rhoncus vitae metus non sagittis.
+          As a Front-end developer its my job to ensure your website looks and
+          feels amazing in every aspect. How do i achieve that you may ask? I
+          try to keep up with the latest and greatest of technologies out there
+          to help you get the website you desire. Down below are some of my
+          favourite technologies i use to build modern day applications.
         </p>
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           {skillItems.map((skill) => (
