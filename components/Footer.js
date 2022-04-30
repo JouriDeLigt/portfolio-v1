@@ -1,33 +1,37 @@
 import Link from "next/link";
 function Footer() {
   return (
-    <footer className="relative w-full pt-16 pb-8 flex items-start justify-center">
-      <div className="bg-white py-8 px-8 rounded-2xl relative w-full max-w-5xl flex flex-col items-center">
+    <footer className="container relative w-full pt-16 pb-8 flex items-start justify-center">
+      <div className="w-full bg-white py-8 px-8 rounded-2xl relative flex flex-col items-center">
         <div className="flex flex-col gap-4">
-          <div className="flex justify-between">
+          <div className="!hidden flex justify-between">
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Terms of service
               </a>
             </Link>
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Cookie policy
               </a>
             </Link>
             <Link href="#" alt="Terms of service">
-              <a className="text-sm text-gray-400 hover:text-red-500 font-light underline transition ease-in-out duration-150">
+              <a className="text-sm text-gray-400 hover:text-jl_red font-light underline transition ease-in-out duration-150">
                 Privacy policy
               </a>
             </Link>
           </div>
-          <p className="font-bold">
+          <p className="font-bold text-center">
             Website designed by{" "}
             <Link
               href="https://twitter.com/VisualsbyFabi"
               alt="Visuals by Fabi"
             >
-              <a target="_blank" className="text-red-500 font-bold">
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red font-bold"
+              >
                 @VisualsbyFabi
               </a>
             </Link>{" "}
@@ -36,8 +40,12 @@ function Footer() {
               href="https://twitter.com/JourideLigt"
               alt="Jouri de Ligt | Front-end developer"
             >
-              <a target="_blank" className="text-red-500 font-bold">
-                @JaayLight
+              <a
+                target="_blank"
+                rel="noopener"
+                className="text-jl_red font-bold"
+              >
+                @JourideLigt
               </a>
             </Link>
           </p>

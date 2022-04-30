@@ -1,4 +1,3 @@
-import Image from "next/image";
 function About(props) {
   const skillItems = props.skillItems;
   return (
@@ -6,38 +5,32 @@ function About(props) {
       className="relative w-full min-h-screen pt-16 flex items-start justify-center"
       id="about"
     >
-      <Image
+      <img
         src="/static/images/gradient-w.png"
         alt="gradient"
-        layout="fill"
-        objectFit="contain"
-        className="absolute inset-0 transform -scale-x-100 opacity-50"
+        className="absolute inset-0 transform -scale-x-100 opacity-50 object-contain"
       />
-      <div className="relative z-10 w-full max-w-5xl flex flex-col">
-        <h2 className="text-4xl font-bold capitalize">
+      <div className="container relative z-10 flex flex-col">
+        <h2 className="text-2xl lg:text-4xl font-bold capitalize">
           &lt;About me &#47;&gt;
         </h2>
-        <div className="relative h-96 mt-16">
-          <Image
-            src="/static/images/dummy-image.jpeg"
-            alt="Dummy image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-2xl"
-          />
-        </div>
-        <p className="text-2xl mt-8 leading-tight">
-          Nullam pretium et dui porta mollis. Nulla suscipit sagittis sem, quis
-          posuere mauris placerat in. Maecenas ac dui feugiat, faucibus quam ut,
-          lobortis mauris. Phasellus porttitor risus quam, a vehicula justo
-          ultricies vitae. Proin tincidunt, metus in Maecenas vitae vehicula
-          nunc. Vestibulum rhoncus vitae metus non sagittis.
+        <img
+          src="/static/images/dummy-image.jpeg"
+          alt="Dummy image"
+          className="w-full h-96 mt-16 object-cover rounded-2xl"
+        />
+        <p className="text-lg lg:text-md mt-8 leading-tight">
+          As a Front-end developer its my job to ensure your website looks and
+          feels amazing in every aspect. How do i achieve that you may ask? I
+          try to keep up with the latest and greatest of technologies out there
+          to help you get the website you desire. Down below are some of my
+          favourite technologies i use to build modern day applications.
         </p>
         <div className="mt-8 flex flex-wrap justify-between gap-4">
           {skillItems.map((skill) => (
             <p
               key={skill}
-              className="bg-red-500 text-white text-center px-16 py-2 text-lg w-fit rounded-lg flex-grow"
+              className="bg-jl_red text-white text-center px-16 py-2 text-base xl:text-md w-fit rounded-lg flex-grow"
             >
               {skill}
             </p>
