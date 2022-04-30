@@ -46,7 +46,7 @@ function Hero(props) {
             </Link>{" "}
             as a{" "}
             <span className="text-jl_red underline">
-              Junior Front-end Developer
+              junior front-end developer
             </span>{" "}
             and working on personal projects to{" "}
             <span className="text-jl_red underline">develop</span> myself even
