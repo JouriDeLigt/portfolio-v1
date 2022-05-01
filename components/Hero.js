@@ -72,7 +72,7 @@ function Hero(props) {
         )}
 
         <div className="lg:hidden mt-16">
-          <span className="text-2xl leading-none font-bold flex">
+          <span className="text-lg sm:text-2xl leading-none font-bold flex items-center">
             &lt;img src=&quot;
             <div className="flex space-x-4 px-4">
               {socialItems.map(([name, icon, url]) => (

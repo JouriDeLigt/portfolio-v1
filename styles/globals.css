@@ -27,7 +27,7 @@ body {
     --contentWidth: 620px;
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   :root {
     --contentWidth: 100%;
   }
@@ -39,7 +39,7 @@ body {
   margin-right: auto;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .container {
     padding-left: 35px;
     padding-right: 35px;
