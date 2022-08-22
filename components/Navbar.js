@@ -70,8 +70,8 @@ function Navbar(props) {
         </span>
       </div>
       <div
-        className={`fixed flex justify-center items-center w-4/5 h-full top-0 right-0 transform bg-white transition duration-500 ease ${
-          navIsOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed flex justify-center items-center w-4/5 h-full top-0 right-0 transform bg-white transition duration-500 ease translate-x-full ${
+          navIsOpen ? "translate-x-0" : ""
         }`}
       >
         <div
