@@ -25,9 +25,9 @@ function Hero(props) {
           <h1 className="text-[36px] sm:text-[40px] xl:text-[48px] 2xl:text-[60px] font-bold leading-tight text-jl_black">
             Hey there i&apos;m{" "}
             <span className="text-jl_red underline">Jouri</span>,
-            <br /> a junior front-end{" "}
+            <br /> a front-end{" "}
             <span className="text-jl_red underline">developer</span> based in{" "}
-            <span className="text-jl_red underline">The Netherlands</span>
+            <br /><span className="text-jl_red underline">The Netherlands</span>
           </h1>
         )}
         {subtext?.length > 0 ? (
@@ -46,7 +46,7 @@ function Hero(props) {
             </Link>{" "}
             as a{" "}
             <span className="text-jl_red underline">
-              junior front-end developer
+              front-end developer
             </span>{" "}
             and working on personal projects to{" "}
             <span className="text-jl_red underline">develop</span> myself even
