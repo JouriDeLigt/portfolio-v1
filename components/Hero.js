@@ -27,30 +27,27 @@ function Hero(props) {
             <span className="text-jl_red underline">Jouri</span>,
             <br /> a front-end{" "}
             <span className="text-jl_red underline">developer</span> based in{" "}
-            <br /><span className="text-jl_red underline">The Netherlands</span>
+            <br />
+            <span className="text-jl_red underline">The Netherlands</span>
           </h1>
         )}
         {subtext?.length > 0 ? (
           <p className="text-lg xl:text-2xl mt-8 leading-tight">{subtext}</p>
         ) : (
           <p className="text-lg xl:text-2xl mt-8 leading-tight">
-            Currently working full-time for{" "}
-            <Link href="https://paddap.nl/">
+            Currently building out{" "}
+            <Link href="https://hoort.dev/">
               <a
                 target="_blank"
                 rel="noopener"
                 className="text-jl_red underline"
               >
-                PADDAP Digital Agency
+                Hoort
               </a>
-            </Link>{" "}
-            as a{" "}
-            <span className="text-jl_red underline">
-              front-end developer
-            </span>{" "}
-            and working on personal projects to{" "}
-            <span className="text-jl_red underline">develop</span> myself even
-            more!
+            </Link>
+            . A web development company focussed on building{" "}
+            <span className="text-jl_red underline">custom</span> websites,
+            webshops and internal systems.
           </p>
         )}
         {url?.length > 0 ? (

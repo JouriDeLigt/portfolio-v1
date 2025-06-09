@@ -22,17 +22,16 @@ export default function Home({ projects }) {
   const socialItems = [
     ["Linkedin", "linkedin.png", "https://www.linkedin.com/in/jouri-de-ligt/"],
     ["Github", "github.png", "https://github.com/JouriDeLigt"],
-    ["Twitter", "twitter.svg", "https://twitter.com/JourideLigt"],
   ];
   const skillItems = [
-    "React",
-    "Next.js",
+    "Vue.js",
+    "Nuxt",
     "Tailwindcss",
     "Wordpress",
     "Github",
     "DevOps",
-    "DigitalOcean",
-    "Vercel",
+    "Proxmox",
+    "Virtualization"
   ];
   const allProjectItems = [
     [

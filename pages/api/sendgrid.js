@@ -6,8 +6,8 @@ async function sendEmail(req, res) {
   try {
     // Mail to user
     await sendgrid.send({
-      to: `${req.body.email}`, // Your email where you'll receive emails
-      from: "hello@jourideligt.dev", // your website email address here
+      to: `${req.body.email}`,
+      from: "hello@jourideligt.dev",
       subject: `Thanks for contacting Jouri de Ligt`,
       html: `<div><p>Dear ${req.body.name},<br />
       Thanks for reaching out to me!<br />
@@ -17,10 +17,10 @@ async function sendEmail(req, res) {
       Jouri de Ligt | Front-end developer
       </div>`,
     });
-    // Mail to growgo
+    // Mail to j.deligt@hoort.dev
     await sendgrid.send({
-      to: "hello@jourideligt.dev", // Your email where you'll receive emails
-      from: "hello@jourideligt.dev", // your website email address here
+      to: "j.deligt@hoort.dev",
+      from: "hello@jourideligt.dev",
       subject: `Nieuw contactaanvraag door: ${req.body.name}`,
       html: `<div><h1>Er is een nieuwe contactaanvraag,</h1><br />
       <p><strong>Naam</strong>: ${req.body.name}<br />
