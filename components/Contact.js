@@ -97,7 +97,7 @@ function Contact() {
                 }`}
               />
             </label>
-            <div>
+            <div class="hidden" hidden>
               <input
                 type="text"
                 {...register("reason")}
