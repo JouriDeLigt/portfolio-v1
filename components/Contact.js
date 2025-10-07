@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
 function Contact() {
@@ -15,6 +14,10 @@ function Contact() {
   // const [succes, setSucces] = useState("false");
 
   const onSubmit = (data) => {
+    if(data.reason) {
+      return;
+    }
+
     fetch("/api/sendgrid", {
       method: "post",
       headers: {
@@ -94,6 +97,14 @@ function Contact() {
                 }`}
               />
             </label>
+            <div>
+              <input
+                type="text"
+                {...register("reason")}
+                id="reason"
+                placeholder="Enter your reason..."
+              />
+            </div>
             <button
               type="submt"
               className="col-span-12 mt-8 py-2 bg-jl_red text-lg text-white font-bold rounded"
