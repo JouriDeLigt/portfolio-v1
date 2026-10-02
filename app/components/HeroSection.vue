@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <section class="relative flex h-screen w-full items-center justify-center">
-    <img src="/static/images/gradient-w.png" alt="gradient" class="absolute inset-0 size-full object-contain opacity-50">
+    <SectionGradient priority class="size-full" />
     <div class="z-10 container flex flex-col">
       <h1 class="text-[36px] leading-tight font-bold text-jl-black sm:text-[40px] xl:text-[48px] 2xl:text-[60px]">
         <template v-if="title">{{ title }}</template>
@@ -31,10 +31,10 @@ defineProps<{
         </template>
       </p>
       <a v-if="url" :href="url" target="_blank" rel="noopener" class="mt-6 w-fit rounded-lg bg-jl-red px-4 py-2 text-lg text-white">
-        &lt;View Website/&gt;
+        <TagLabel>View Website</TagLabel>
       </a>
       <NuxtLink v-else to="/#featured-projects" class="mt-6 w-fit rounded-lg bg-jl-red px-4 py-2 text-lg text-white">
-        &lt;View work/&gt;
+        <TagLabel>View work</TagLabel>
       </NuxtLink>
 
       <div class="mt-16 lg:hidden">

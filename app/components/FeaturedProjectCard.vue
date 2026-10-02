@@ -9,7 +9,16 @@ defineProps<{
 <!-- Odd and even cards mirror each other on xl screens -->
 <template>
   <div class="group flex w-full flex-col xl:flex-row xl:gap-4 xl:even:flex-row-reverse">
-    <img :src="project.thumbnail" :alt="project.title" class="h-[300px] w-full rounded-2xl object-cover xl:h-auto xl:w-1/2">
+    <NuxtImg
+      :src="project.thumbnail"
+      :alt="`${project.title} website`"
+      width="1920"
+      height="1200"
+      sizes="sm:100vw md:100vw lg:620px xl:390px 2xl:512px"
+      format="webp"
+      loading="lazy"
+      class="h-[300px] w-full rounded-2xl object-cover xl:h-auto xl:w-1/2"
+    />
     <div class="-mt-8 flex w-full flex-col group-odd:items-start group-even:items-end xl:mt-0 xl:w-1/2">
       <p class="hidden text-sm leading-none font-light text-black xl:block">Featured Project</p>
       <h3 class="mt-2 hidden text-2xl leading-none font-bold text-jl-red xl:block">{{ project.title }}</h3>
@@ -39,7 +48,8 @@ defineProps<{
             <div
               class="relative ml-4 flex h-5 w-5 items-center justify-center rounded-full border-2 border-solid border-jl-red transition-[margin] duration-200 ease-in-out group-hover:ml-6"
             >
-              <img src="/static/icons/arrow.svg" alt="Arrow" width="15" height="15">
+              <!-- Plain <img>: an SVG scales by itself, @nuxt/image adds nothing here -->
+              <img src="/static/icons/arrow.svg" alt="" width="15" height="15">
             </div>
           </NuxtLink>
         </div>

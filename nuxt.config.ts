@@ -1,40 +1,177 @@
 import tailwindcss from '@tailwindcss/vite'
+import { sameAs, site, skills } from './shared/data/site'
+
+const ONE_WEEK = 'public, max-age=604800, stale-while-revalidate=86400'
 
 export default defineNuxtConfig({
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/image',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    'nuxt-schema-org',
+    'nuxt-security',
+    'nuxt-seo-utils',
+  ],
+
+  $production: {
+    // Only serve the variants generated at build time: no sharp in the serverless function
+    image: { provider: 'ipxStatic' },
+  },
+
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
+      meta: [{ name: 'theme-color', content: '#f2f2f2' }],
+    },
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  site: {
+    url: site.url,
+    name: site.name,
+    description: site.description,
+    defaultLocale: 'en',
+    // Only the production deployment may be indexed; Vercel previews get noindex
+    indexable: process.env.VERCEL_ENV ? process.env.VERCEL_ENV === 'production' : undefined,
+  },
+
+  // On Vercel only the first matching header rule applies, so avoid page-specific header rules:
+  // they would drop these security headers for that page.
+  routeRules: {
+    '/**': {
+      headers: {
+        'permissions-policy': 'camera=(), microphone=(), geolocation=(), display-capture=(), fullscreen=()',
+        'cross-origin-opener-policy': 'same-origin',
+        'cross-origin-resource-policy': 'same-site',
+      },
+    },
+    // Not content-hashed, so no "immutable": a changed source image keeps its URL
+    '/_ipx/**': { headers: { 'cache-control': ONE_WEEK, 'x-content-type-options': 'nosniff' } },
+    '/static/**': { headers: { 'cache-control': ONE_WEEK, 'x-content-type-options': 'nosniff' } },
+    '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable', 'x-content-type-options': 'nosniff' } },
+  },
+
+  // Small CSS bundle: inlining it saves a render-blocking request on first load
+  features: {
+    inlineStyles: true,
+  },
+
   compatibilityDate: '2026-10-01',
 
-  // Swiper's CSS has to load before main.css, which overrides parts of it.
-  css: [
-    '@fontsource-variable/space-grotesk',
-    'swiper/css',
-    'swiper/css/navigation',
-    'swiper/css/pagination',
-    '~/assets/css/main.css',
-  ],
+  // Every page and image variant is static; only /api/contact runs as a serverless function
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/thankyou', '/robots.txt'],
+    },
+  },
 
   vite: {
     plugins: [tailwindcss()],
   },
 
-  app: {
-    head: {
-      htmlAttrs: { lang: 'en' },
-      titleTemplate: 'Jouri de ligt | %s',
-      meta: [
-        {
-          name: 'description',
-          content: 'Front-end developer portfolio from Jouri de Ligt build with React, Next.js, Tailwindcss and more!',
-        },
-      ],
-      link: [{ rel: 'icon', href: '/static/logo/favicon.jpg' }],
+  eslint: {
+    config: { stylistic: true },
+  },
+
+  fonts: {
+    // Self-hosted from public/fonts; the local provider never contacts a font CDN.
+    // @nuxt/fonts adds the preload and metric-adjusted fallbacks against layout shift.
+    provider: 'local',
+    families: [
+      {
+        name: 'Space Grotesk',
+        src: '/fonts/space-grotesk/space-grotesk-latin-wght-normal.woff2',
+        weight: '300 700',
+        style: 'normal',
+        display: 'swap',
+      },
+    ],
+  },
+
+  image: {
+    provider: 'ipx',
+  },
+
+  schemaOrg: {
+    identity: {
+      type: 'Person',
+      name: site.name,
+      image: site.photo,
+      jobTitle: site.jobTitle,
+      worksFor: { '@type': 'Organization', 'name': site.company.name, 'url': site.company.url },
+      address: { '@type': 'PostalAddress', 'addressCountry': 'NL' },
+      knowsAbout: skills,
+      sameAs,
     },
   },
 
-  // Every page is static HTML; only /api/contact runs as a serverless function.
-  nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ['/', '/thankyou', '/sitemap.xml'],
+  security: {
+    // These middlewares don't fit a serverless function or are handled in server/api/contact.post.ts
+    rateLimiter: false,
+    xssValidator: false,
+    corsHandler: false,
+    allowedMethodsRestricter: false,
+    requestSizeLimiter: false,
+    removeLoggers: false,
+    sri: false,
+    headers: {
+      crossOriginEmbedderPolicy: false,
+      crossOriginResourcePolicy: 'same-site',
+      contentSecurityPolicy: {
+        'default-src': ['\'self\''],
+        'base-uri': ['\'none\''],
+        'object-src': ['\'none\''],
+        // Prerendered pages get sha256 hashes of their inline scripts, runtime pages a nonce
+        'script-src': ['\'self\'', '\'nonce-{{nonce}}\''],
+        'script-src-attr': ['\'none\''],
+        'style-src': ['\'self\'', '\'unsafe-inline\''],
+        'img-src': ['\'self\'', 'data:'],
+        'font-src': ['\'self\''],
+        'connect-src': ['\'self\''],
+        'form-action': ['\'self\''],
+        'frame-ancestors': ['\'none\''],
+        'upgrade-insecure-requests': true,
+      },
+      xFrameOptions: 'DENY',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      // No includeSubDomains/preload: that would also force HTTPS on every other subdomain
+      strictTransportSecurity: { maxAge: 63072000, includeSubdomains: false, preload: false },
+      permissionsPolicy: {
+        'camera': [],
+        'microphone': [],
+        'geolocation': [],
+        'display-capture': [],
+        'fullscreen': [],
+      },
     },
+    // Prerendered pages get the CSP as a <meta> tag with sha256 hashes of their inline scripts.
+    // frame-ancestors can't be set in a meta tag; X-Frame-Options: DENY covers it.
+    ssg: {
+      meta: true,
+      hashScripts: true,
+      hashStyles: false,
+      nitroHeaders: false,
+      exportToPresets: false,
+    },
+  },
+
+  seo: {
+    meta: {
+      twitterSite: site.twitter,
+      twitterCreator: site.twitter,
+    },
+  },
+
+  sitemap: {
+    // Generated once at build time instead of by the serverless function
+    zeroRuntime: true,
   },
 })

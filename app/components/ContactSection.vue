@@ -13,6 +13,7 @@ const inputs = {
 
 const submitted = ref(false)
 const pending = ref(false)
+const sendFailed = ref(false)
 
 function validate() {
   for (const field of fields) {
@@ -38,12 +39,13 @@ async function onSubmit() {
   if (form.reason || pending.value) return
 
   pending.value = true
+  sendFailed.value = false
   try {
     await $fetch('/api/contact', { method: 'POST', body: form })
     await navigateTo('/thankyou')
   }
   catch {
-    await navigateTo('/404')
+    sendFailed.value = true
   }
   finally {
     pending.value = false
@@ -55,9 +57,9 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
 
 <template>
   <section id="contact" class="relative flex min-h-screen w-full items-start justify-center pt-16">
-    <img src="/static/images/gradient-w.png" alt="gradient" class="absolute inset-0 -scale-x-100 object-contain opacity-50">
+    <SectionGradient mirrored />
     <div class="relative z-10 container flex flex-col">
-      <h2 class="text-2xl font-bold capitalize lg:text-4xl">&lt;Contact /&gt;</h2>
+      <h2 class="text-2xl font-bold capitalize lg:text-4xl"><TagLabel spaced>Contact</TagLabel></h2>
       <div class="mt-16 w-full rounded-2xl border-2 border-black px-8 py-12">
         <form class="grid grid-cols-12" @submit.prevent="onSubmit">
           <h2 class="col-span-12 text-4xl leading-relaxed font-bold sm:col-span-3">Want to get in touch?</h2>
@@ -70,7 +72,10 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
                 v-model="form.name"
                 type="text"
                 name="name"
+                autocomplete="name"
                 placeholder="Enter your name..."
+                aria-required="true"
+                :aria-invalid="errors.name"
                 :class="[inputClass, { 'border-b-jl-red': errors.name }]"
               >
             </label>
@@ -82,7 +87,10 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
                 v-model="form.email"
                 type="email"
                 name="email"
+                autocomplete="email"
                 placeholder="Enter your email..."
+                aria-required="true"
+                :aria-invalid="errors.email"
                 :class="[inputClass, { 'border-b-jl-red': errors.email }]"
               >
             </label>
@@ -96,13 +104,21 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
               name="message"
               placeholder="Enter your message..."
               rows="4"
+              aria-required="true"
+              :aria-invalid="errors.message"
               :class="[inputClass, { 'border-b-jl-red': errors.message }]"
             />
           </label>
           <div class="coolest-field" aria-hidden="true">
             <input id="reason" v-model="form.reason" type="text" name="reason" placeholder="Enter your reason..." tabindex="-1" autocomplete="off">
           </div>
-          <button type="submit" class="col-span-12 mt-8 rounded bg-jl-red py-2 text-lg font-bold text-white">Submit</button>
+          <button type="submit" class="col-span-12 mt-8 rounded bg-jl-red py-2 text-lg font-bold text-white" :aria-busy="pending">
+            {{ pending ? 'Sending...' : 'Submit' }}
+          </button>
+          <p v-if="sendFailed" role="alert" class="col-span-12 mt-4 font-bold text-jl-red">
+            Something went wrong while sending your message. Please try again or email me at
+            <a href="mailto:hello@jourideligt.dev" class="underline">hello@jourideligt.dev</a>.
+          </p>
         </form>
       </div>
     </div>

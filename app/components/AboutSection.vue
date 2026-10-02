@@ -4,10 +4,19 @@ import { skills } from '#shared/data/site'
 
 <template>
   <section id="about" class="relative flex min-h-screen w-full items-start justify-center pt-16">
-    <img src="/static/images/gradient-w.png" alt="gradient" class="absolute inset-0 -scale-x-100 object-contain opacity-50">
+    <SectionGradient mirrored />
     <div class="relative z-10 container flex flex-col">
-      <h2 class="text-2xl font-bold capitalize lg:text-4xl">&lt;About me /&gt;</h2>
-      <img src="/static/images/dummy-image.jpeg" alt="Dummy image" class="mt-16 h-96 w-full rounded-2xl object-cover">
+      <h2 class="text-2xl font-bold capitalize lg:text-4xl"><TagLabel spaced>About me</TagLabel></h2>
+      <NuxtImg
+        src="/static/images/about.webp"
+        alt="Desk setup with the Jouri de Ligt logo"
+        width="1200"
+        height="1200"
+        sizes="sm:100vw md:100vw lg:620px xl:780px 2xl:1024px"
+        format="webp"
+        loading="lazy"
+        class="mt-16 h-96 w-full rounded-2xl object-cover"
+      />
       <p class="mt-8 text-lg leading-tight">
         As a Front-end developer its my job to ensure your website looks and feels amazing in every aspect. How do i
         achieve that you may ask? I try to keep up with the latest and greatest of technologies out there to help you get

@@ -1,6 +1,7 @@
 const FROM = 'hello@jourideligt.dev'
 const INBOX = 'j.deligt@hoort.dev'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_BODY_BYTES = 20_000
 
 interface ContactBody {
   name?: unknown
@@ -45,6 +46,16 @@ function sendMail(apiKey: string, mail: Mail) {
 }
 
 export default defineEventHandler(async (event) => {
+  // Browsers always send Origin on a fetch POST; reject posts from other sites
+  const origin = getRequestHeader(event, 'origin')
+  if (!origin || URL.parse(origin)?.host !== getRequestHost(event, { xForwardedHost: true })) {
+    throw createError({ status: 403, statusText: 'Forbidden' })
+  }
+
+  if (Number(getRequestHeader(event, 'content-length') ?? 0) > MAX_BODY_BYTES) {
+    throw createError({ status: 413, statusText: 'Payload too large' })
+  }
+
   const body = await readBody<ContactBody | null>(event)
 
   // Honeypot: the "reason" field is hidden from people, so only bots fill it in

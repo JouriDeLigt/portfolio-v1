@@ -24,10 +24,10 @@ defineProps<{
     </div>
     <div class="mt-4 flex gap-4">
       <a v-if="project.url" :href="project.url" target="_blank" rel="noopener">
-        <img src="/static/icons/external-url.png" alt="Demo version" width="25" height="25">
+        <NuxtImg src="/static/icons/external-url.webp" :alt="`View ${project.name}`" width="25" height="25" densities="x1 x2" format="webp" loading="lazy" />
       </a>
       <a v-if="project.repo" :href="project.repo" target="_blank" rel="noopener">
-        <img src="/static/icons/github.png" alt="Github repo" width="25" height="25">
+        <NuxtImg src="/static/icons/github.webp" :alt="`${project.name} on GitHub`" width="25" height="25" densities="x1 x2" format="webp" loading="lazy" />
       </a>
     </div>
   </div>

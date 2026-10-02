@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <span class="flex leading-none font-bold">
-    &lt;img src=&quot;
+    <span aria-hidden="true">&lt;img src=&quot;</span>
     <span class="flex space-x-4 px-4">
       <a
         v-for="item in items"
@@ -20,9 +20,9 @@ defineProps<{
         rel="noopener"
         :class="{ 'rotate-90': rotated }"
       >
-        <img :src="`/static/icons/${item.icon}`" :alt="item.name" width="25" height="25">
+        <NuxtImg :src="`/static/icons/${item.icon}`" :alt="item.name" width="25" height="25" densities="x1 x2" format="webp" />
       </a>
     </span>
-    &quot;/&gt;
+    <span aria-hidden="true">&quot;/&gt;</span>
   </span>
 </template>
