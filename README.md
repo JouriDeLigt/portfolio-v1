@@ -1,35 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# jourideligt.dev
 
-## Getting Started
+Persoonlijke portfolio, gebouwd met [Nuxt 4](https://nuxt.com) en [Tailwind CSS v4](https://tailwindcss.com). Geen CMS en geen database: alle content staat in de repo.
 
-First, run the development server:
+## Lokaal draaien
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+De site draait dan op http://localhost:3000.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Om het contactformulier lokaal echt mail te laten versturen: kopieer `.env.example` naar `.env` en vul `SENDGRID_API_KEY` in.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Content aanpassen
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Wat                                | Waar                                     |
+| ---------------------------------- | ---------------------------------------- |
+| Featured cases + hobbyprojecten    | `shared/data/projects.ts`                |
+| Navigatie, social links, skills    | `shared/data/site.ts`                    |
+| Afbeeldingen van featured cases    | `public/static/projects/<slug>/`         |
+| Teksten (hero, about, contact, …)  | de componenten in `app/components/`      |
 
-## Learn More
+**Featured case toevoegen:** zet de screenshots in `public/static/projects/<slug>/` (liefst als WebP) en voeg een object toe aan `featuredProjects` in `shared/data/projects.ts`. De projectpagina `/project/<slug>` en de sitemap worden daar automatisch uit opgebouwd.
 
-To learn more about Next.js, take a look at the following resources:
+Screenshots omzetten naar WebP (macOS, `brew install webp`):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cwebp -q 88 -resize 1920 0 screenshot.png -o desktop-1.webp
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contactformulier
 
-## Deploy on Vercel
+`server/api/contact.post.ts` verstuurt via de SendGrid API twee mails: een notificatie naar `j.deligt@hoort.dev` (met reply-to naar de afzender) en een bevestiging naar de bezoeker. Bots worden tegengehouden door een verborgen honeypot-veld.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# portfolio-v1
+Vercel, automatisch bij een push naar `main`. Alle pagina's worden bij de build geprerenderd naar statische HTML. Alleen `/api/contact` draait als serverless function.
+
+Benodigde environment variable in Vercel: `SENDGRID_API_KEY`.

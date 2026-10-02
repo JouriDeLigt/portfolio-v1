@@ -1,25 +1,25 @@
 {
-  "name": "jourideligt-portfolio-v1",
+  "name": "jourideligt-portfolio",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "engines": {
+    "node": "24.x"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.6.2",
-    "next": "12.0.7",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^7.27.1",
-    "swiper": "^8.0.7"
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "nuxt": "^4.5.2",
+    "swiper": "^14.3.0",
+    "vue": "^3.5.43",
+    "vue-router": "^5.3.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "eslint": "8.6.0",
-    "eslint-config-next": "12.0.7",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.13"
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
   }
 }
