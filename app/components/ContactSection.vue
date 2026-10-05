@@ -15,6 +15,28 @@ const submitted = ref(false)
 const pending = ref(false)
 const sendFailed = ref(false)
 
+const turnstileToken = ref('')
+// Changing the key renders a fresh widget, which fetches a new token
+const turnstileKey = ref(0)
+
+// Turnstile normally finishes in the background before anyone is done typing; if the
+// visitor is quicker than that, wait for it instead of failing
+function waitForTurnstile(timeoutMs = 10_000) {
+  if (turnstileToken.value) return Promise.resolve(true)
+  return new Promise<boolean>((resolve) => {
+    const timer = setTimeout(() => {
+      stop()
+      resolve(false)
+    }, timeoutMs)
+    const stop = watch(turnstileToken, (token) => {
+      if (!token) return
+      clearTimeout(timer)
+      stop()
+      resolve(true)
+    })
+  })
+}
+
 function validate() {
   for (const field of fields) {
     errors[field] = !form[field].trim()
@@ -41,11 +63,15 @@ async function onSubmit() {
   pending.value = true
   sendFailed.value = false
   try {
-    await $fetch('/api/contact', { method: 'POST', body: form })
+    if (!await waitForTurnstile()) throw new Error('Turnstile did not finish')
+    await $fetch('/api/contact', { method: 'POST', body: { ...form, turnstileToken: turnstileToken.value } })
     await navigateTo('/thankyou')
   }
   catch {
     sendFailed.value = true
+    // Tokens are single-use and the server may already have spent this one
+    turnstileToken.value = ''
+    turnstileKey.value++
   }
   finally {
     pending.value = false
@@ -112,6 +138,19 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
           <div class="coolest-field" aria-hidden="true">
             <input id="reason" v-model="form.reason" type="text" name="reason" placeholder="Enter your reason..." tabindex="-1" autocomplete="off">
           </div>
+          <!--
+            Spam check by Cloudflare Turnstile. Its code (hydrate-on-visible) and Cloudflare's script
+            (trigger, which also skips the script preload in <head>) only load once the form scrolls into
+            view. It stays invisible unless Cloudflare asks for an interaction; only then does the margin apply.
+          -->
+          <LazyNuxtTurnstile
+            :key="turnstileKey"
+            v-model="turnstileToken"
+            hydrate-on-visible
+            trigger="visible"
+            :options="{ appearance: 'interaction-only', size: 'flexible', theme: 'light' }"
+            class="col-span-12 [&_iframe]:mt-8"
+          />
           <button type="submit" class="col-span-12 mt-8 rounded bg-jl-red py-2 text-lg font-bold text-white" :aria-busy="pending">
             {{ pending ? 'Sending...' : 'Submit' }}
           </button>

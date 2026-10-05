@@ -1,5 +1,8 @@
-const FROM = 'hello@jourideligt.dev'
-const INBOX = 'j.deligt@hoort.dev'
+// Layers of protection, cheapest first:
+// 1. Origin check and maximum body size
+// 2. Honeypot: a hidden field only bots fill in
+// 3. Validation
+// 4. Cloudflare Turnstile token, verified with Cloudflare
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const MAX_BODY_BYTES = 20_000
 
@@ -8,41 +11,12 @@ interface ContactBody {
   email?: unknown
   message?: unknown
   reason?: unknown
-}
-
-interface Mail {
-  to: string
-  subject: string
-  html: string
-  replyTo?: string
+  turnstileToken?: unknown
 }
 
 function field(value: unknown, maxLength: number) {
   const text = typeof value === 'string' ? value.trim() : ''
   return text.length <= maxLength ? text : ''
-}
-
-function escapeHtml(text: string) {
-  return text
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll('\'', '&#39;')
-}
-
-function sendMail(apiKey: string, mail: Mail) {
-  return $fetch('https://api.sendgrid.com/v3/mail/send', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}` },
-    body: {
-      personalizations: [{ to: [{ email: mail.to }] }],
-      from: { email: FROM },
-      reply_to: mail.replyTo ? { email: mail.replyTo } : undefined,
-      subject: mail.subject,
-      content: [{ type: 'text/html', value: mail.html }],
-    },
-  })
 }
 
 export default defineEventHandler(async (event) => {
@@ -58,53 +32,45 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<ContactBody | null>(event)
 
-  // Honeypot: the "reason" field is hidden from people, so only bots fill it in
+  // Pretend it worked, so the bot learns nothing
   if (body?.reason) return { success: true }
 
   // Single line, since it also goes into the subject
   const name = field(body?.name, 100).replace(/\s+/g, ' ')
   const email = field(body?.email, 254)
   const message = field(body?.message, 5000)
+  const turnstileToken = field(body?.turnstileToken, 2048)
 
-  if (!name || !message || !EMAIL_PATTERN.test(email)) {
+  if (!name || !message || !EMAIL_PATTERN.test(email) || !turnstileToken) {
     throw createError({ status: 400, statusText: 'Invalid contact form data' })
   }
 
-  // Same variable name as the old Next.js site, so the Vercel env needs no change
-  const apiKey = process.env.SENDGRID_API_KEY
-  if (!apiKey) {
-    throw createError({ status: 500, statusText: 'SENDGRID_API_KEY is not set' })
+  if (!isMailConfigured()) {
+    throw createError({ status: 500, statusText: 'Brevo is not configured' })
   }
 
-  const safeName = escapeHtml(name)
+  const turnstile = await verifyTurnstileToken(turnstileToken, event)
+  if (!turnstile.success) {
+    throw createError({ status: 403, statusText: 'Spam check failed' })
+  }
 
+  const data = { name, email, message }
+
+  // The notification is what matters: if it fails, the visitor has to try again
   try {
-    await sendMail(apiKey, {
-      to: INBOX,
-      replyTo: email,
-      subject: `Nieuw contactaanvraag door: ${name}`,
-      html: `<div><h1>Er is een nieuwe contactaanvraag,</h1><br />
-      <p><strong>Naam</strong>: ${safeName}<br />
-      <strong>E-mail</strong>: ${escapeHtml(email)}<br />
-      <strong>Bericht</strong>: ${escapeHtml(message).replaceAll('\n', '<br />')}<br /></p>
-      </div>`,
-    })
-
-    await sendMail(apiKey, {
-      to: email,
-      subject: 'Thanks for contacting Jouri de Ligt',
-      html: `<div><p>Dear ${safeName},<br />
-      Thanks for reaching out to me!<br />
-      I will try to contact you asap!<br /><br />
-      For now, have a great day!<br/><br/>
-      Kind regards,<br/>
-      Jouri de Ligt | Front-end developer
-      </div>`,
-    })
+    await sendContactNotification(data)
   }
   catch (error) {
-    console.error('Sending contact form mail failed', error)
+    console.error('[contact] Sending the notification failed', error)
     throw createError({ status: 502, statusText: 'Could not send email' })
+  }
+
+  // The confirmation is a courtesy: the message already arrived, so only log a failure
+  try {
+    await sendContactConfirmation(data)
+  }
+  catch (error) {
+    console.error('[contact] Sending the confirmation failed', error)
   }
 
   return { success: true }

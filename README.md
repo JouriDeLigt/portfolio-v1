@@ -11,7 +11,7 @@ npm run dev
 
 De site draait dan op http://localhost:3000.
 
-Om het contactformulier lokaal echt mail te laten versturen: kopieer `.env.example` naar `.env` en vul `SENDGRID_API_KEY` in.
+Om het contactformulier lokaal echt mail te laten versturen: kopieer `.env.example` naar `.env` en vul `BREVO_API_KEY` in. Turnstile gebruikt in dev automatisch de testsleutels van Cloudflare.
 
 ## Checks
 
@@ -60,10 +60,24 @@ De projectpagina `/project/<slug>`, de sitemap en de structured data worden auto
 
 ## Contactformulier
 
-`server/api/contact.post.ts` verstuurt via de SendGrid API twee mails: een notificatie naar `j.deligt@hoort.dev` (met reply-to naar de afzender) en een bevestiging naar de bezoeker. Bescherming: verborgen honeypot-veld, Origin-check, validatie, maximale berichtgrootte en HTML-escaping.
+Zelfde opzet als bij Hoort: Cloudflare Turnstile tegen spam en Brevo's transactionele API voor de mail.
+
+- **Mail:** `server/utils/mail.ts` verstuurt via de Brevo-API (`POST /v3/smtp/email`) twee mails: een notificatie naar `j.deligt@hoort.dev` (met reply-to naar de bezoeker) en een bevestiging naar de bezoeker. Mislukt de notificatie, dan krijgt de bezoeker een foutmelding. Mislukt alleen de bevestiging, dan wordt dat gelogd.
+- **Turnstile:** `@nuxtjs/turnstile`, in de modus `interaction-only`. De check draait onzichtbaar en toont alleen een widget als Cloudflare om interactie vraagt. Het script laadt pas als het formulier in beeld komt.
+- **Bescherming in `server/api/contact.post.ts`**, in deze volgorde: Origin-check, maximale berichtgrootte, honeypot-veld, validatie en de Turnstile-verificatie bij Cloudflare. Daarnaast wordt alle invoer HTML-ge-escaped.
+
+De mail gaat via het Brevo-account van Hoort: afzender `contact@hoort.dev`, ontvanger `j.deligt@hoort.dev`. Antwoorden op de bevestiging komen bij `j.deligt@hoort.dev` binnen. Dit staat in `runtimeConfig.contact` in `nuxt.config.ts`. Met `BREVO_SANDBOX=true` controleert Brevo de aanvraag zonder iets te versturen; handig voor Vercel-previews.
 
 ## Deploy
 
 Vercel, automatisch bij een push naar `main`. Alle pagina's en afbeeldingsvarianten worden bij de build geprerenderd naar statische bestanden. Alleen `/api/contact` draait als serverless function.
 
-Benodigde environment variable in Vercel: `SENDGRID_API_KEY`.
+Benodigde environment variables in Vercel:
+
+| Variable                         | Wat                                                        |
+| -------------------------------- | ---------------------------------------------------------- |
+| `BREVO_API_KEY`                  | API-key van het Hoort-Brevo-account                        |
+| `NUXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile site key (nodig tijdens de build)                |
+| `NUXT_TURNSTILE_SECRET_KEY`      | Turnstile secret key                                       |
+
+Optioneel: `BREVO_SANDBOX=true` (niets versturen, bijvoorbeeld op previews) en `NUXT_CONTACT_FROM_EMAIL` / `NUXT_CONTACT_TO_EMAIL`.

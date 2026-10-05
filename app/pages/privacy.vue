@@ -15,7 +15,7 @@ useSeoMeta({
         <SectionGradient mirrored priority />
         <div class="relative z-10 container flex flex-col">
           <h1 class="text-2xl font-bold capitalize lg:text-4xl"><TagLabel spaced>Privacy policy</TagLabel></h1>
-          <p class="mt-4 text-sm font-light">Last updated: 2 October 2026</p>
+          <p class="mt-4 text-sm font-light">Last updated: 5 October 2026</p>
 
           <div class="mt-16 rounded-2xl bg-white p-8 leading-relaxed sm:p-12">
             <p>
@@ -40,21 +40,29 @@ useSeoMeta({
             </p>
             <p class="mt-2">
               Your message is delivered to my inbox and you receive an automatic confirmation by email. Both emails are
-              sent through Twilio SendGrid.
+              sent through Brevo.
+            </p>
+            <p class="mt-2">
+              To keep spam out, the contact form is protected by Cloudflare Turnstile. Once the form comes into view,
+              Turnstile checks whether you are a person, based on technical data such as your IP address and browser
+              details. The legal basis is my legitimate interest in protecting the form against abuse (article 6(1)(f)
+              GDPR).
             </p>
 
             <h2 class="mt-8 text-xl font-bold text-jl-red">Visiting this website</h2>
             <p class="mt-2">
-              This website does not use cookies, analytics or any other kind of tracking. Fonts and images are served
-              from this website itself, so loading a page does not share data with third parties such as Google. Like
-              any web server, the hosting provider processes technical data such as your IP address and browser details
-              to deliver the website and protect it against abuse.
+              This website does not set cookies and does not use analytics or any other kind of tracking. Apart from the
+              spam check on the contact form, everything is served from this website itself, so loading a page does not
+              share data with third parties such as Google. Like any web server, the hosting provider processes
+              technical data such as your IP address and browser details to deliver the website and protect it against
+              abuse.
             </p>
 
             <h2 class="mt-8 text-xl font-bold text-jl-red">Who processes your data</h2>
             <ul class="mt-2 list-disc pl-5">
               <li>Vercel Inc., hosting of this website</li>
-              <li>Twilio Inc. (SendGrid), delivery of the contact form emails</li>
+              <li>Cloudflare, Inc. (Turnstile), spam protection of the contact form</li>
+              <li>Brevo, based in France, delivery of the contact form emails</li>
               <li>My email provider, where your message is stored</li>
             </ul>
             <p class="mt-2">

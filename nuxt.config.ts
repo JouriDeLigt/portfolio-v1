@@ -13,9 +13,13 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-security',
     'nuxt-seo-utils',
+    '@nuxtjs/turnstile',
   ],
 
   $production: {
+    // Filled by NUXT_TURNSTILE_SECRET_KEY. Production only: in dev @nuxtjs/turnstile
+    // fills in Cloudflare's always-passing test key, which an empty string would override.
+    runtimeConfig: { turnstile: { secretKey: '' } },
     // Only serve the variants generated at build time: no sharp in the serverless function
     image: { provider: 'ipxStatic' },
   },
@@ -40,6 +44,23 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     // Only the production deployment may be indexed; Vercel previews get noindex
     indexable: process.env.VERCEL_ENV ? process.env.VERCEL_ENV === 'production' : undefined,
+  },
+
+  runtimeConfig: {
+    // Contact form mail via Brevo's transactional API, same variable names as Hoort's other sites.
+    // At runtime the NUXT_BREVO_* equivalents override these.
+    brevo: {
+      apiKey: process.env.BREVO_API_KEY || '',
+      url: process.env.BREVO_API_URL || 'https://api.brevo.com/v3',
+      // Brevo validates the request but sends nothing; handy for Vercel previews
+      sandbox: process.env.BREVO_SANDBOX === 'true',
+    },
+    contact: {
+      // NUXT_CONTACT_FROM_EMAIL / NUXT_CONTACT_TO_EMAIL. Sent from Hoort's Brevo account,
+      // where hoort.dev is the authenticated sender domain.
+      fromEmail: 'contact@hoort.dev',
+      toEmail: 'j.deligt@hoort.dev',
+    },
   },
 
   // On Vercel only the first matching header rule applies, so avoid page-specific header rules:
@@ -129,8 +150,10 @@ export default defineNuxtConfig({
         'default-src': ['\'self\''],
         'base-uri': ['\'none\''],
         'object-src': ['\'none\''],
-        // Prerendered pages get sha256 hashes of their inline scripts, runtime pages a nonce
-        'script-src': ['\'self\'', '\'nonce-{{nonce}}\''],
+        // Prerendered pages get sha256 hashes of their inline scripts, runtime pages a nonce.
+        // Cloudflare Turnstile loads its script and widget iframe from challenges.cloudflare.com.
+        'script-src': ['\'self\'', '\'nonce-{{nonce}}\'', 'https://challenges.cloudflare.com'],
+        'frame-src': ['https://challenges.cloudflare.com'],
         'script-src-attr': ['\'none\''],
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'img-src': ['\'self\'', 'data:'],
@@ -173,5 +196,11 @@ export default defineNuxtConfig({
   sitemap: {
     // Generated once at build time instead of by the serverless function
     zeroRuntime: true,
+  },
+
+  turnstile: {
+    // NUXT_PUBLIC_TURNSTILE_SITE_KEY, needed at build time because the pages are prerendered.
+    // In dev the module falls back to Cloudflare's always-passing test keys.
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
   },
 })

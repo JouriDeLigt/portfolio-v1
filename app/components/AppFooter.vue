@@ -17,9 +17,9 @@ onMounted(() => {
         </div>
         <p class="text-center font-bold">
           Website designed by
-          <a href="https://twitter.com/VisualsbyFabi" target="_blank" rel="noopener" class="font-bold text-jl-red">@VisualsbyFabi</a>
+          <span class="font-bold text-jl-red">@VisualsbyFabi</span>
           and built by
-          <a href="https://x.com/JourideLigt" target="_blank" rel="noopener" class="font-bold text-jl-red">@JourideLigt</a>
+          <a href="https://www.linkedin.com/in/jouri-de-ligt/" target="_blank" rel="noopener" class="font-bold text-jl-red">@JourideLigt</a>
         </p>
         <p class="text-center font-bold text-black">Copyright © {{ year }} Jouri de Ligt. All rights reserved.</p>
       </div>
