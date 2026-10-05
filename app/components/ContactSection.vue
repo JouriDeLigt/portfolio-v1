@@ -18,6 +18,17 @@ const sendFailed = ref(false)
 const turnstileToken = ref('')
 // Changing the key renders a fresh widget, which fetches a new token
 const turnstileKey = ref(0)
+// The widget only shows itself when Cloudflare asks for an interaction. It renders inside a
+// shadow root, so CSS can't see that happen; Turnstile's callback can.
+const turnstileVisible = ref(false)
+const turnstileOptions = {
+  'appearance': 'interaction-only',
+  'size': 'flexible',
+  'theme': 'light',
+  'before-interactive-callback': () => {
+    turnstileVisible.value = true
+  },
+} as const
 
 // Turnstile normally finishes in the background before anyone is done typing; if the
 // visitor is quicker than that, wait for it instead of failing
@@ -71,6 +82,7 @@ async function onSubmit() {
     sendFailed.value = true
     // Tokens are single-use and the server may already have spent this one
     turnstileToken.value = ''
+    turnstileVisible.value = false
     turnstileKey.value++
   }
   finally {
@@ -141,15 +153,16 @@ const inputClass = 'mt-2 rounded border-y-2 border-white bg-white px-4 py-3 font
           <!--
             Spam check by Cloudflare Turnstile. Its code (hydrate-on-visible) and Cloudflare's script
             (trigger, which also skips the script preload in <head>) only load once the form scrolls into
-            view. It stays invisible unless Cloudflare asks for an interaction; only then does the margin apply.
+            view. It stays invisible unless Cloudflare asks for an interaction.
           -->
           <LazyNuxtTurnstile
             :key="turnstileKey"
             v-model="turnstileToken"
             hydrate-on-visible
             trigger="visible"
-            :options="{ appearance: 'interaction-only', size: 'flexible', theme: 'light' }"
-            class="col-span-12 [&_iframe]:mt-8"
+            :options="turnstileOptions"
+            class="col-span-12"
+            :class="{ 'mt-8': turnstileVisible }"
           />
           <button type="submit" class="col-span-12 mt-8 rounded bg-jl-red py-2 text-lg font-bold text-white" :aria-busy="pending">
             {{ pending ? 'Sending...' : 'Submit' }}
